@@ -1,0 +1,47 @@
+name: "Web Request"
+description: "Send Web Requests like POST and GET with Axios."
+author: "Shane"
+branding:
+  icon: "globe"
+  color: "green"
+
+inputs:
+  url:
+    description: "URL for Request"
+    required: true
+  method:
+    description: "Request Method"
+    required: false
+    default: "GET"
+  data:
+    description: "Request Data JSON"
+    required: false
+    default: "{}"
+  headers:
+    description: "Request Headers JSON"
+    required: false
+    default: "{}"
+  params:
+    description: "Request Parameters JSON"
+    required: false
+    default: "{}"
+  username:
+    description: "Basic Auth Username"
+    required: false
+  password:
+    description: "Basic Auth Password"
+    required: false
+  insecure:
+    description: "Ignore SSL Errors"
+    required: false
+    default: "false"
+
+outputs:
+  status:
+    description: "Response Status"
+  data:
+    description: "Response Data"
+
+runs:
+  using: "node20"
+  main: "dist/index.js"
