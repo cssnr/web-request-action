@@ -15,6 +15,10 @@
 * [Contributing](#Contributing)
 * [Development](#Development)
 
+> [!NOTE]  
+> Please submit a [Feature Request](https://github.com/cssnr/web-request-action/discussions/categories/feature-requests)
+> for new features or [Open an Issue](https://github.com/cssnr/web-request-action/issues) if you find any bugs.
+
 ## Inputs
 
 | input    | required | default | description               |
@@ -122,15 +126,15 @@ More Examples Coming Soon...
 
 For general help or to request a feature, see:
 
-- Q&A Discussion: https://github.com/cssnr/portainer-stack-deploy-action/discussions/categories/q-a
-- Request a Feature: https://github.com/cssnr/portainer-stack-deploy-action/discussions/categories/feature-requests
+- Q&A Discussion: https://github.com/cssnr/web-request-action/discussions/categories/q-a
+- Request a Feature: https://github.com/cssnr/web-request-action/discussions/categories/feature-requests
 
 If you are experiencing an issue/bug or getting unexpected results, you can:
 
-- Report an Issue: https://github.com/cssnr/portainer-stack-deploy-action/issues
+- Report an Issue: https://github.com/cssnr/web-request-action/issues
 - Chat with us on Discord: https://discord.gg/wXy6m2X8wY
 - Provide General
-  Feedback: [https://cssnr.github.io/feedback/](https://cssnr.github.io/feedback/?app=Portainer%20Stack%20Deploy)
+  Feedback: [https://cssnr.github.io/feedback/](https://cssnr.github.io/feedback/?app=Web%20Request%20Action)
 
 # Contributing
 

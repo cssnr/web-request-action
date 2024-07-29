@@ -1,5 +1,5 @@
 name: "Web Request"
-description: "Send Web Requests like POST and GET with Axios."
+description: "Send Web Requests like POST and GET with Axios using GitHub Actions."
 author: "Shane"
 branding:
   icon: "globe"
