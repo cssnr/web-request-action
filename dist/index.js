@@ -35038,6 +35038,8 @@ var __webpack_exports__ = {};
 (() => {
 const core = __nccwpck_require__(2186)
 const axios = __nccwpck_require__(8757)
+const FormData = __nccwpck_require__(4334)
+const fs = __nccwpck_require__(7147)
 const https = __nccwpck_require__(5687)
 
 ;(async () => {
@@ -35047,7 +35049,7 @@ const https = __nccwpck_require__(5687)
         console.log('url:', url)
         const method = core.getInput('method', { required: true })
         console.log('method:', method)
-        const data = JSON.parse(core.getInput('data'))
+        let data = JSON.parse(core.getInput('data'))
         console.log('data:', data)
         const headers = JSON.parse(core.getInput('headers'))
         console.log('headers:', headers)
@@ -35059,6 +35061,10 @@ const https = __nccwpck_require__(5687)
         console.log('password:', password)
         const insecure = core.getBooleanInput('insecure')
         console.log('insecure:', insecure)
+        const file = core.getInput('file')
+        console.log('file:', file)
+        const name = core.getInput('name')
+        console.log('name:', name)
 
         // Options
         const auth = username && password ? { username, password } : {}
@@ -35069,6 +35075,19 @@ const https = __nccwpck_require__(5687)
               })
             : null
         console.log('httpsAgent:', httpsAgent)
+
+        // File
+        if (file) {
+            const form = new FormData()
+            for (const [key, value] of Object.entries(data)) {
+                form.append(key, value)
+            }
+            form.append(name, fs.createReadStream(file))
+            Object.assign(headers, form.getHeaders())
+            data = form
+        }
+
+        // Request
         const config = {
             url,
             method,
@@ -35079,10 +35098,10 @@ const https = __nccwpck_require__(5687)
             httpsAgent,
         }
         console.log('config:', config)
-
-        // Request
         const response = await axios.request(config)
         // console.log('response:', response)
+        // console.log('response.request._headers:', response.request._headers)
+        // console.log('response.headers:', response.headers)
         console.log('response.status:', response.status)
         console.log('response.data:', response.data)
 

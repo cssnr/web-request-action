@@ -1,5 +1,7 @@
 const core = require('@actions/core')
 const axios = require('axios')
+const FormData = require('form-data')
+const fs = require('fs')
 const https = require('https')
 
 ;(async () => {
@@ -9,7 +11,7 @@ const https = require('https')
         console.log('url:', url)
         const method = core.getInput('method', { required: true })
         console.log('method:', method)
-        const data = JSON.parse(core.getInput('data'))
+        let data = JSON.parse(core.getInput('data'))
         console.log('data:', data)
         const headers = JSON.parse(core.getInput('headers'))
         console.log('headers:', headers)
@@ -21,6 +23,10 @@ const https = require('https')
         console.log('password:', password)
         const insecure = core.getBooleanInput('insecure')
         console.log('insecure:', insecure)
+        const file = core.getInput('file')
+        console.log('file:', file)
+        const name = core.getInput('name')
+        console.log('name:', name)
 
         // Options
         const auth = username && password ? { username, password } : {}
@@ -31,6 +37,19 @@ const https = require('https')
               })
             : null
         console.log('httpsAgent:', httpsAgent)
+
+        // File
+        if (file) {
+            const form = new FormData()
+            for (const [key, value] of Object.entries(data)) {
+                form.append(key, value)
+            }
+            form.append(name, fs.createReadStream(file))
+            Object.assign(headers, form.getHeaders())
+            data = form
+        }
+
+        // Request
         const config = {
             url,
             method,
@@ -41,10 +60,10 @@ const https = require('https')
             httpsAgent,
         }
         console.log('config:', config)
-
-        // Request
         const response = await axios.request(config)
         // console.log('response:', response)
+        // console.log('response.request._headers:', response.request._headers)
+        // console.log('response.headers:', response.headers)
         console.log('response.status:', response.status)
         console.log('response.data:', response.data)
 

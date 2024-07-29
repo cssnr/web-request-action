@@ -18,12 +18,17 @@ jobs:
         id: test
         uses: ./
         with:
-          url: https://httpbin.org/get
+          url: https://httpbin.org/post
+          data: '{"key": "value"}'
 
-      - name: "Echo Outputs"
+      - name: "Validate Outputs"
         run: |
           echo '${{ steps.test.outputs.status }}'
           echo '${{ steps.test.outputs.data }}'
+          if [ '${{fromJson(steps.test.outputs.data).data}}' != '{"key":"value"}' ];then
+            echo "Output Invalid"
+            exit 1
+          fi
 
   lint:
     name: "Lint"

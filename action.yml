@@ -12,7 +12,7 @@ inputs:
   method:
     description: "Request Method"
     required: false
-    default: "GET"
+    default: "POST"
   data:
     description: "Request Data JSON"
     required: false
@@ -35,6 +35,13 @@ inputs:
     description: "Ignore SSL Errors"
     required: false
     default: "false"
+  file:
+    description: "File Path"
+    required: false
+  name:
+    description: "File Key Name"
+    required: false
+    default: "file"
 
 outputs:
   status:
