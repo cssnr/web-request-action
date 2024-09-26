@@ -24,5 +24,6 @@ jobs:
         uses: cssnr/mirror-repository-action@master
         with:
           host: https://codeberg.org
-          username: shaner
+          create: true
+          username: "shaner"
           password: ${{ secrets.CODEBERG_TOKEN }}

@@ -9,12 +9,12 @@
 
 # Web Request Action
 
-* [Inputs](#Inputs)
-* [Outputs](#Outputs)
-* [Examples](#Examples)
-* [Support](#Support)
-* [Contributing](#Contributing)
-* [Development](#Development)
+-   [Inputs](#Inputs)
+-   [Outputs](#Outputs)
+-   [Examples](#Examples)
+-   [Support](#Support)
+-   [Contributing](#Contributing)
+-   [Development](#Development)
 
 > [!NOTE]  
 > Please submit a [Feature Request](https://github.com/cssnr/web-request-action/discussions/categories/feature-requests)
@@ -22,18 +22,18 @@
 
 ## Inputs
 
-| input    | required | default | description               |
-|----------|----------|---------|---------------------------|
-| url      | **Yes**  | -       | URL for Request           |
-| method   | No       | `POST`  | Request Method            |
-| data     | No       | -       | Request Data JSON *       |
-| headers  | No       | -       | Request Headers JSON      |
-| params   | No       | -       | Request Parameters JSON * |
-| username | No       | -       | Basic Auth Username       |
-| password | No       | -       | Basic Auth Password       |
-| insecure | No       | `false` | Ignore SSL Errors         |
-| file     | No       | -       | File Path to Send *       |
-| name     | No       | `file`  | File Form Key Name        |
+| input    | required | default | description                |
+| -------- | -------- | ------- | -------------------------- |
+| url      | **Yes**  | -       | URL for Request            |
+| method   | No       | `POST`  | Request Method             |
+| data     | No       | -       | Request Data JSON \*       |
+| headers  | No       | -       | Request Headers JSON       |
+| params   | No       | -       | Request Parameters JSON \* |
+| username | No       | -       | Basic Auth Username        |
+| password | No       | -       | Basic Auth Password        |
+| insecure | No       | `false` | Ignore SSL Errors          |
+| file     | No       | -       | File Path to Send \*       |
+| name     | No       | `file`  | File Form Key Name         |
 
 **data** - Only used for `PUT`, `POST`, `DELETE`, and `PATCH`. Data is parsed with `JSON.parse`.
 
@@ -45,28 +45,28 @@ key `name`. The file path is relative to the workspace/working directory.
 For more information on inputs, see: https://axios-http.com/docs/req_config
 
 ```yaml
-  - name: "Web Request"
-    uses: cssnr/web-request-action@master
-    with:
+- name: 'Web Request'
+  uses: cssnr/web-request-action@master
+  with:
       url: https://httpbin.org/post
 ```
 
 ## Outputs
 
 | output | description     |
-|--------|-----------------|
+| ------ | --------------- |
 | status | Response Status |
 | data   | Response Data   |
 
 ```yaml
-  - name: "Web Request"
-    id: test
-    uses: cssnr/web-request-action@master
-    with:
+- name: 'Web Request'
+  id: test
+  uses: cssnr/web-request-action@master
+  with:
       url: https://httpbin.org/post
 
-  - name: "Echo Output"
-    run: |
+- name: 'Echo Output'
+  run: |
       echo '${{ steps.test.outputs.status }}'
       echo '${{ steps.test.outputs.data }}'
 ```
@@ -86,9 +86,9 @@ Make a GET Request:
 Send Data:
 
 ```yaml
-  - name: "Web Request"
-    uses: cssnr/web-request-action@master
-    with:
+- name: 'Web Request'
+  uses: cssnr/web-request-action@master
+  with:
       url: https://httpbin.org/post
       data: '{"key": "value"}'
 ```
@@ -96,9 +96,9 @@ Send Data:
 Send File:
 
 ```yaml
-  - name: "Web Request"
-    uses: cssnr/web-request-action@master
-    with:
+- name: 'Web Request'
+  uses: cssnr/web-request-action@master
+  with:
       url: https://httpbin.org/post
       file: path/to/file.txt
 ```
@@ -106,11 +106,11 @@ Send File:
 All Inputs:
 
 ```yaml
-  - name: "Web Request"
-    uses: cssnr/web-request-action@master
-    with:
+- name: 'Web Request'
+  uses: cssnr/web-request-action@master
+  with:
       url: https://httpbin.org/post
-      method: "POST"
+      method: 'POST'
       data: '{"key": "value"}'
       headers: '{"header": "value"}'
       params: '{"parameter": "value"}'
@@ -127,15 +127,15 @@ More Examples Coming Soon...
 
 For general help or to request a feature, see:
 
-- Q&A Discussion: https://github.com/cssnr/web-request-action/discussions/categories/q-a
-- Request a Feature: https://github.com/cssnr/web-request-action/discussions/categories/feature-requests
+-   Q&A Discussion: https://github.com/cssnr/web-request-action/discussions/categories/q-a
+-   Request a Feature: https://github.com/cssnr/web-request-action/discussions/categories/feature-requests
 
 If you are experiencing an issue/bug or getting unexpected results, you can:
 
-- Report an Issue: https://github.com/cssnr/web-request-action/issues
-- Chat with us on Discord: https://discord.gg/wXy6m2X8wY
-- Provide General
-  Feedback: [https://cssnr.github.io/feedback/](https://cssnr.github.io/feedback/?app=Web%20Request%20Action)
+-   Report an Issue: https://github.com/cssnr/web-request-action/issues
+-   Chat with us on Discord: https://discord.gg/wXy6m2X8wY
+-   Provide General
+    Feedback: [https://cssnr.github.io/feedback/](https://cssnr.github.io/feedback/?app=Web%20Request%20Action)
 
 # Contributing
 
@@ -143,12 +143,12 @@ Currently, the best way to contribute to this project is to star this project on
 
 Additionally, you can support other GitHub Actions I have published:
 
-- [VirusTotal Action](https://github.com/cssnr/virustotal-action)
-- [Update Version Tags Action](https://github.com/cssnr/update-version-tags-action)
-- [Update JSON Value Action](https://github.com/cssnr/update-json-value-action)
-- [Parse Issue Form Action](https://github.com/cssnr/parse-issue-form-action)
-- [Portainer Stack Deploy](https://github.com/cssnr/portainer-stack-deploy-action)
-- [Mozilla Addon Update Action](https://github.com/cssnr/mozilla-addon-update-action)
+-   [VirusTotal Action](https://github.com/cssnr/virustotal-action)
+-   [Update Version Tags Action](https://github.com/cssnr/update-version-tags-action)
+-   [Update JSON Value Action](https://github.com/cssnr/update-json-value-action)
+-   [Parse Issue Form Action](https://github.com/cssnr/parse-issue-form-action)
+-   [Portainer Stack Deploy](https://github.com/cssnr/portainer-stack-deploy-action)
+-   [Mozilla Addon Update Action](https://github.com/cssnr/mozilla-addon-update-action)
 
 For a full list of current projects to support visit: [https://cssnr.github.io/](https://cssnr.github.io/)
 
