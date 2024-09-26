@@ -2,6 +2,7 @@
 [![Test](https://img.shields.io/github/actions/workflow/status/cssnr/web-request-action/test.yaml?logo=github&logoColor=white&label=test)](https://github.com/cssnr/web-request-action/actions/workflows/test.yaml)
 [![GitHub Release Version](https://img.shields.io/github/v/release/cssnr/web-request-action?logo=github)](https://github.com/cssnr/web-request-action/releases/latest)
 [![GitHub Last Commit](https://img.shields.io/github/last-commit/cssnr/web-request-action?logo=github&logoColor=white&label=updated)](https://github.com/cssnr/web-request-action/graphs/commit-activity)
+[![Codeberg Last Commit](https://img.shields.io/gitea/last-commit/cssnr/web-request-action/master?gitea_url=https%3A%2F%2Fcodeberg.org%2F&logo=codeberg&logoColor=white&label=updated)](https://codeberg.org/cssnr/web-request-action)
 [![GitHub Top Language](https://img.shields.io/github/languages/top/cssnr/web-request-action?logo=htmx&logoColor=white)](https://github.com/cssnr/web-request-action)
 [![GitHub Org Stars](https://img.shields.io/github/stars/cssnr?style=flat&logo=github&logoColor=white)](https://cssnr.github.io/)
 [![Discord](https://img.shields.io/discord/899171661457293343?logo=discord&logoColor=white&label=discord&color=7289da)](https://discord.gg/wXy6m2X8wY)
