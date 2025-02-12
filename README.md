@@ -154,18 +154,3 @@ Additionally, you can support other GitHub Actions I have published:
 - [Mozilla Addon Update Action](https://github.com/cssnr/mozilla-addon-update-action)
 
 For a full list of current projects to support visit: [https://cssnr.github.io/](https://cssnr.github.io/)
-
-# Development
-
-1. Install `act`: https://nektosact.com/installation/index.html
-2. Run `npm run build:watch`
-3. In another terminal, run `act -j test`
-
-Alternatively, to run from source, change `main` in [action.yml](action.yml) to `src/index.js` and
-run: `act -j test --use-gitignore=false`
-
-For advanced using with things like secrets, variables and context see: https://nektosact.com/usage/index.html  
-You should also review the options from `act --help`
-
-Note, the `.env`, `.secrets` and `.vars` files are automatically sourced with no extra options.  
-To source `event.json` you need to run act with `act -e event.json`
