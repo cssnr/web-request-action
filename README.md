@@ -1,5 +1,6 @@
 [![Tags](https://img.shields.io/github/actions/workflow/status/cssnr/web-request-action/tags.yaml?logo=github&logoColor=white&label=tags)](https://github.com/cssnr/web-request-action/actions/workflows/tags.yaml)
 [![Test](https://img.shields.io/github/actions/workflow/status/cssnr/web-request-action/test.yaml?logo=github&logoColor=white&label=test)](https://github.com/cssnr/web-request-action/actions/workflows/test.yaml)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=cssnr_web-request-action&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=cssnr_web-request-action)
 [![GitHub Release Version](https://img.shields.io/github/v/release/cssnr/web-request-action?logo=github)](https://github.com/cssnr/web-request-action/releases/latest)
 [![GitHub Last Commit](https://img.shields.io/github/last-commit/cssnr/web-request-action?logo=github&logoColor=white&label=updated)](https://github.com/cssnr/web-request-action/graphs/commit-activity)
 [![Codeberg Last Commit](https://img.shields.io/gitea/last-commit/cssnr/web-request-action/master?gitea_url=https%3A%2F%2Fcodeberg.org%2F&logo=codeberg&logoColor=white&label=updated)](https://codeberg.org/cssnr/web-request-action)
