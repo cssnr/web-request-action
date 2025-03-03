@@ -1,4 +1,4 @@
-[![Tags](https://img.shields.io/github/actions/workflow/status/cssnr/web-request-action/tags.yaml?logo=github&logoColor=white&label=tags)](https://github.com/cssnr/web-request-action/actions/workflows/tags.yaml)
+[![Release](https://img.shields.io/github/actions/workflow/status/cssnr/web-request-action/release.yaml?logo=github&logoColor=white&label=release)](https://github.com/cssnr/web-request-action/actions/workflows/release.yaml)
 [![Test](https://img.shields.io/github/actions/workflow/status/cssnr/web-request-action/test.yaml?logo=github&logoColor=white&label=test)](https://github.com/cssnr/web-request-action/actions/workflows/lint.yaml)
 [![Lint](https://img.shields.io/github/actions/workflow/status/cssnr/web-request-action/lint.yaml?logo=github&logoColor=white&label=lint)](https://github.com/cssnr/web-request-action/actions/workflows/test.yaml)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=cssnr_web-request-action&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=cssnr_web-request-action)
