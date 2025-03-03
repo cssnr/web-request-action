@@ -19,8 +19,7 @@
 
 > [!NOTE]  
 > Please submit a [Feature Request](https://github.com/cssnr/web-request-action/discussions/categories/feature-requests)
-> for new features or [Open an Issue](https://github.com/cssnr/web-request-action/issues)
-> if you find any bugs.
+> for new features or [Open an Issue](https://github.com/cssnr/web-request-action/issues) if you find any bugs.
 
 ## Inputs
 
@@ -141,8 +140,6 @@ If you are experiencing an issue/bug or getting unexpected results, you can:
 # Contributing
 
 Currently, the best way to contribute to this project is to star this project on GitHub.
-
-If you would like to submit a PR, please review the [CONTRIBUTING.md](CONTRIBUTING.md).
 
 Additionally, you can support other GitHub Actions I have published:
 
