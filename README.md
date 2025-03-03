@@ -1,5 +1,6 @@
 [![Tags](https://img.shields.io/github/actions/workflow/status/cssnr/web-request-action/tags.yaml?logo=github&logoColor=white&label=tags)](https://github.com/cssnr/web-request-action/actions/workflows/tags.yaml)
-[![Test](https://img.shields.io/github/actions/workflow/status/cssnr/web-request-action/test.yaml?logo=github&logoColor=white&label=test)](https://github.com/cssnr/web-request-action/actions/workflows/test.yaml)
+[![Test](https://img.shields.io/github/actions/workflow/status/cssnr/web-request-action/test.yaml?logo=github&logoColor=white&label=test)](https://github.com/cssnr/web-request-action/actions/workflows/lint.yaml)
+[![Lint](https://img.shields.io/github/actions/workflow/status/cssnr/web-request-action/lint.yaml?logo=github&logoColor=white&label=lint)](https://github.com/cssnr/web-request-action/actions/workflows/test.yaml)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=cssnr_web-request-action&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=cssnr_web-request-action)
 [![GitHub Release Version](https://img.shields.io/github/v/release/cssnr/web-request-action?logo=github)](https://github.com/cssnr/web-request-action/releases/latest)
 [![GitHub Last Commit](https://img.shields.io/github/last-commit/cssnr/web-request-action?logo=github&logoColor=white&label=updated)](https://github.com/cssnr/web-request-action/graphs/commit-activity)
@@ -15,26 +16,26 @@
 - [Examples](#Examples)
 - [Support](#Support)
 - [Contributing](#Contributing)
-- [Development](#Development)
 
 > [!NOTE]  
 > Please submit a [Feature Request](https://github.com/cssnr/web-request-action/discussions/categories/feature-requests)
-> for new features or [Open an Issue](https://github.com/cssnr/web-request-action/issues) if you find any bugs.
+> for new features or [Open an Issue](https://github.com/cssnr/web-request-action/issues)
+> if you find any bugs.
 
 ## Inputs
 
 | input    | required | default | description                |
-| -------- | -------- | ------- | -------------------------- |
+| -------- | :------: | ------- | -------------------------- |
 | url      | **Yes**  | -       | URL for Request            |
-| method   | No       | `POST`  | Request Method             |
-| data     | No       | -       | Request Data JSON \*       |
-| headers  | No       | -       | Request Headers JSON       |
-| params   | No       | -       | Request Parameters JSON \* |
-| username | No       | -       | Basic Auth Username        |
-| password | No       | -       | Basic Auth Password        |
-| insecure | No       | `false` | Ignore SSL Errors          |
-| file     | No       | -       | File Path to Send \*       |
-| name     | No       | `file`  | File Form Key Name         |
+| method   |    -     | `POST`  | Request Method             |
+| data     |    -     | -       | Request Data JSON \*       |
+| headers  |    -     | -       | Request Headers JSON       |
+| params   |    -     | -       | Request Parameters JSON \* |
+| username |    -     | -       | Basic Auth Username        |
+| password |    -     | -       | Basic Auth Password        |
+| insecure |    -     | `false` | Ignore SSL Errors          |
+| file     |    -     | -       | File Path to Send \*       |
+| name     |    -     | `file`  | File Form Key Name         |
 
 **data** - Only used for `PUT`, `POST`, `DELETE`, and `PATCH`. Data is parsed with `JSON.parse`.
 
@@ -135,22 +136,25 @@ If you are experiencing an issue/bug or getting unexpected results, you can:
 
 - Report an Issue: https://github.com/cssnr/web-request-action/issues
 - Chat with us on Discord: https://discord.gg/wXy6m2X8wY
-- Provide General
-  Feedback: [https://cssnr.github.io/feedback/](https://cssnr.github.io/feedback/?app=Web%20Request%20Action)
+- Provide General Feedback: [https://cssnr.github.io/feedback/](https://cssnr.github.io/feedback/?app=Web%20Request%20Action)
 
 # Contributing
 
 Currently, the best way to contribute to this project is to star this project on GitHub.
 
+If you would like to submit a PR, please review the [CONTRIBUTING.md](CONTRIBUTING.md).
+
 Additionally, you can support other GitHub Actions I have published:
 
-- [VirusTotal Action](https://github.com/cssnr/virustotal-action)
-- [Update Version Tags Action](https://github.com/cssnr/update-version-tags-action)
-- [Update JSON Value Action](https://github.com/cssnr/update-json-value-action)
-- [Parse Issue Form Action](https://github.com/cssnr/parse-issue-form-action)
-- [Mirror Repository Action](https://github.com/cssnr/mirror-repository-action)
-- [Stack Deploy Action](https://github.com/cssnr/stack-deploy-action)
-- [Portainer Stack Deploy](https://github.com/cssnr/portainer-stack-deploy-action)
-- [Mozilla Addon Update Action](https://github.com/cssnr/mozilla-addon-update-action)
+- [Stack Deploy Action](https://github.com/cssnr/stack-deploy-action?tab=readme-ov-file#readme)
+- [Portainer Stack Deploy](https://github.com/cssnr/portainer-stack-deploy-action?tab=readme-ov-file#readme)
+- [VirusTotal Action](https://github.com/cssnr/virustotal-action?tab=readme-ov-file#readme)
+- [Mirror Repository Action](https://github.com/cssnr/mirror-repository-action?tab=readme-ov-file#readme)
+- [Update Version Tags Action](https://github.com/cssnr/update-version-tags-action?tab=readme-ov-file#readme)
+- [Update JSON Value Action](https://github.com/cssnr/update-json-value-action?tab=readme-ov-file#readme)
+- [Parse Issue Form Action](https://github.com/cssnr/parse-issue-form-action?tab=readme-ov-file#readme)
+- [Cloudflare Purge Cache Action](https://github.com/cssnr/cloudflare-purge-cache-action?tab=readme-ov-file#readme)
+- [Mozilla Addon Update Action](https://github.com/cssnr/mozilla-addon-update-action?tab=readme-ov-file#readme)
+- [Docker Tags Action](https://github.com/cssnr/docker-tags-action?tab=readme-ov-file#readme)
 
 For a full list of current projects to support visit: [https://cssnr.github.io/](https://cssnr.github.io/)
