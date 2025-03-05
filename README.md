@@ -1,6 +1,6 @@
 [![Release](https://img.shields.io/github/actions/workflow/status/cssnr/web-request-action/release.yaml?logo=github&logoColor=white&label=release)](https://github.com/cssnr/web-request-action/actions/workflows/release.yaml)
-[![Test](https://img.shields.io/github/actions/workflow/status/cssnr/web-request-action/test.yaml?logo=github&logoColor=white&label=test)](https://github.com/cssnr/web-request-action/actions/workflows/lint.yaml)
-[![Lint](https://img.shields.io/github/actions/workflow/status/cssnr/web-request-action/lint.yaml?logo=github&logoColor=white&label=lint)](https://github.com/cssnr/web-request-action/actions/workflows/test.yaml)
+[![Test](https://img.shields.io/github/actions/workflow/status/cssnr/web-request-action/test.yaml?logo=github&logoColor=white&label=test)](https://github.com/cssnr/web-request-action/actions/workflows/test.yaml)
+[![Lint](https://img.shields.io/github/actions/workflow/status/cssnr/web-request-action/lint.yaml?logo=github&logoColor=white&label=lint)](https://github.com/cssnr/web-request-action/actions/workflows/lint.yaml)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=cssnr_web-request-action&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=cssnr_web-request-action)
 [![GitHub Release Version](https://img.shields.io/github/v/release/cssnr/web-request-action?logo=github)](https://github.com/cssnr/web-request-action/releases/latest)
 [![GitHub Last Commit](https://img.shields.io/github/last-commit/cssnr/web-request-action?logo=github&logoColor=white&label=updated)](https://github.com/cssnr/web-request-action/graphs/commit-activity)
@@ -77,11 +77,11 @@ For more information on inputs, see: https://axios-http.com/docs/req_config
 Make a GET Request:
 
 ```yaml
-  - name: "Web Request"
-    uses: cssnr/web-request-action@v1
-    with:
-      url: https://httpbin.org/get
-      method: 'GET''
+- name: 'Web Request'
+  uses: cssnr/web-request-action@v1
+  with:
+    url: https://httpbin.org/get
+    method: 'GET'
 ```
 
 Send Data:
