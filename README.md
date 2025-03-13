@@ -77,7 +77,9 @@ For more information on inputs, see: https://axios-http.com/docs/req_config
 
 ## Examples
 
-Make a GET Request:
+💡 _Click on an example heading to expand or collapse the example._
+
+<details open><summary>Make a GET Request</summary>
 
 ```yaml
 - name: 'Web Request'
@@ -87,7 +89,8 @@ Make a GET Request:
     method: 'GET'
 ```
 
-Send Data:
+</details>
+<details open><summary>Send Data</summary>
 
 ```yaml
 - name: 'Web Request'
@@ -97,7 +100,8 @@ Send Data:
     data: '{"key": "value"}'
 ```
 
-Send File:
+</details>
+<details><summary>Send File</summary>
 
 ```yaml
 - name: 'Web Request'
@@ -107,7 +111,8 @@ Send File:
     file: path/to/file.txt
 ```
 
-All Inputs:
+</details>
+<details><summary>All Inputs</summary>
 
 ```yaml
 - name: 'Web Request'
@@ -124,6 +129,8 @@ All Inputs:
     file: path/to/file.txt
     name: file
 ```
+
+</details>
 
 More Examples Coming Soon...
 
