@@ -6,6 +6,13 @@ on:
     - cron: "18 18 * * 1,3,5"
   push:
     branches: [master]
+    paths:
+      - "dist/**"
+      - "src/**"
+      - ".github/workflows/test.yaml"
+      - "package*.json"
+      - "requirements.txt"
+      - "action.yml"
   pull_request:
 
 jobs:
@@ -29,13 +36,13 @@ jobs:
         run: |
           echo '${{ steps.test.outputs.status }}'
           echo '${{ steps.test.outputs.data }}'
-          if [ '${{fromJson(steps.test.outputs.data).data}}' != '{"key":"value"}' ];then
+          if [ '${{ fromJson(steps.test.outputs.data).data }}' != '{"key":"value"}' ];then
             echo "Output Invalid"
             exit 1
           fi
 
       - name: "Schedule Failure Notification"
-        if: ${{ always() && failure() && github.event_name == 'schedule' }}
+        if: ${{ failure() && github.event_name == 'schedule' }}
         uses: sarisia/actions-status-discord@v1
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
