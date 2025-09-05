@@ -2,14 +2,17 @@
 [![GitHub Tag Minor](https://img.shields.io/github/v/tag/cssnr/web-request-action?sort=semver&filter=!v*.*.*&logo=git&logoColor=white&labelColor=585858&label=%20)](https://github.com/cssnr/web-request-action/tags)
 [![GitHub Release Version](https://img.shields.io/github/v/release/cssnr/web-request-action?logo=git&logoColor=white&labelColor=585858&label=%20)](https://github.com/cssnr/web-request-action/releases/latest)
 [![Release](https://img.shields.io/github/actions/workflow/status/cssnr/web-request-action/release.yaml?logo=github&label=release)](https://github.com/cssnr/web-request-action/actions/workflows/release.yaml)
-[![Test](https://img.shields.io/github/actions/workflow/status/cssnr/web-request-action/test.yaml?logo=github&label=test)](https://github.com/cssnr/web-request-action/actions/workflows/test.yaml)
-[![Lint](https://img.shields.io/github/actions/workflow/status/cssnr/web-request-action/lint.yaml?logo=github&label=lint)](https://github.com/cssnr/web-request-action/actions/workflows/lint.yaml)
+[![Test](https://img.shields.io/github/actions/workflow/status/cssnr/web-request-action/test.yaml?logo=cachet&label=test)](https://github.com/cssnr/web-request-action/actions/workflows/test.yaml)
+[![Lint](https://img.shields.io/github/actions/workflow/status/cssnr/web-request-action/lint.yaml?logo=cachet&label=lint)](https://github.com/cssnr/web-request-action/actions/workflows/lint.yaml)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=cssnr_web-request-action&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=cssnr_web-request-action)
 [![GitHub Last Commit](https://img.shields.io/github/last-commit/cssnr/web-request-action?logo=github&label=updated)](https://github.com/cssnr/web-request-action/graphs/commit-activity)
 [![Codeberg Last Commit](https://img.shields.io/gitea/last-commit/cssnr/web-request-action/master?gitea_url=https%3A%2F%2Fcodeberg.org%2F&logo=codeberg&logoColor=white&label=updated)](https://codeberg.org/cssnr/web-request-action)
 [![GitHub Top Language](https://img.shields.io/github/languages/top/cssnr/web-request-action?logo=htmx)](https://github.com/cssnr/web-request-action)
-[![GitHub Org Stars](https://img.shields.io/github/stars/cssnr?style=flat&logo=github)](https://cssnr.github.io/)
+[![GitHub Forks](https://img.shields.io/github/forks/cssnr/web-request-action?style=flat&logo=github)](https://github.com/cssnr/web-request-action/forks)
+[![GitHub Repo Stars](https://img.shields.io/github/stars/cssnr/web-request-action?style=flat&logo=github)](https://github.com/cssnr/web-request-action/stargazers)
+[![GitHub Org Stars](https://img.shields.io/github/stars/cssnr?style=flat&logo=github&label=org%20stars)](https://cssnr.github.io/)
 [![Discord](https://img.shields.io/discord/899171661457293343?logo=discord&logoColor=white&label=discord&color=7289da)](https://discord.gg/wXy6m2X8wY)
+[![Ko-fi](https://img.shields.io/badge/Ko--fi-72a5f2?logo=kofi&label=support)](https://ko-fi.com/cssnr)
 
 # Web Request Action
 
@@ -79,7 +82,19 @@ For more information on inputs, see: https://axios-http.com/docs/req_config
 
 💡 _Click on an example heading to expand or collapse the example._
 
-<details open><summary>Make a GET Request</summary>
+<details open><summary>Algolia Start Crawl</summary>
+
+```yaml
+- name: 'Algolia Start Crawl'
+  uses: cssnr/web-request-action@v1
+  with:
+    url: https://crawler.algolia.com/api/1/crawlers/${{ secrets.CRAWLER_ID }}/reindex
+    username: ${{ secrets.CRAWLER_USER_ID }}
+    password: ${{ secrets.CRAWLER_API_KEY }}
+```
+
+</details>
+<details><summary>Make a GET Request</summary>
 
 ```yaml
 - name: 'Web Request'
@@ -90,7 +105,7 @@ For more information on inputs, see: https://axios-http.com/docs/req_config
 ```
 
 </details>
-<details open><summary>Send Data</summary>
+<details><summary>Send Data</summary>
 
 ```yaml
 - name: 'Web Request'
@@ -163,9 +178,12 @@ For more information, see the CSSNR [SUPPORT.md](https://github.com/cssnr/.githu
 
 # Contributing
 
-Currently, the best way to contribute to this project is to star this project on GitHub.
+Please consider making a donation to support the development of this project
+and [additional](https://cssnr.com/) open source projects.
 
-For more information, see the CSSNR [CONTRIBUTING.md](https://github.com/cssnr/.github/blob/master/.github/CONTRIBUTING.md#contributing).
+[![Ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/cssnr)
+
+If you would like to submit a PR, please review the [CONTRIBUTING.md](#contributing-ov-file).
 
 Additionally, you can support other GitHub Actions I have published:
 
@@ -179,5 +197,7 @@ Additionally, you can support other GitHub Actions I have published:
 - [Cloudflare Purge Cache Action](https://github.com/cssnr/cloudflare-purge-cache-action?tab=readme-ov-file#readme)
 - [Mozilla Addon Update Action](https://github.com/cssnr/mozilla-addon-update-action?tab=readme-ov-file#readme)
 - [Docker Tags Action](https://github.com/cssnr/docker-tags-action?tab=readme-ov-file#readme)
+- [Package Changelog Action](https://github.com/cssnr/package-changelog-action?tab=readme-ov-file#readme)
+- [NPM Outdated Check Action](https://github.com/cssnr/npm-outdated-action?tab=readme-ov-file#readme)
 
-For a full list of current projects to support visit: [https://cssnr.github.io/](https://cssnr.github.io/)
+For a full list of current projects visit: [https://cssnr.github.io/](https://cssnr.github.io/)
