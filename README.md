@@ -23,6 +23,9 @@
 - [Support](#Support)
 - [Contributing](#Contributing)
 
+Easily make a web request from a workflow using Axios.
+Supports all methods, uploading files, basic authentication and more.
+
 > [!NOTE]  
 > Please submit a [Feature Request](https://github.com/cssnr/web-request-action/discussions/categories/feature-requests)
 > for new features or [Open an Issue](https://github.com/cssnr/web-request-action/issues) if you find any bugs.
