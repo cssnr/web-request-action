@@ -18,23 +18,23 @@ jobs:
 
     steps:
       - name: "Checkout"
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
-      - name: "Setup Node 22"
-        uses: actions/setup-node@v4
+      - name: "Setup Node 24"
+        uses: actions/setup-node@v5
         with:
-          node-version: 22
-          #cache: npm
+          node-version: 24
 
       - name: "Install"
         id: install
         run: |
-          npm install
+          npm ci
 
       - name: "ESLint"
+        id: eslint
         if: ${{ !cancelled() }}
         run: |
-          npm run lint
+          npm run lint:report
 
       - name: "Prettier"
         if: ${{ !cancelled() }}
@@ -67,47 +67,11 @@ jobs:
           echo "::endgroup::"
           "${RUNNER_TEMP}/actionlint" -color -verbose -shellcheck= -pyflakes=
 
-  build:
-    name: "Build"
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
+      - name: "Check Build Action"
+        if: ${{ !cancelled() }}
+        uses: cssnr/check-build-action@master
 
-    steps:
-      - name: "Checkout"
-        uses: actions/checkout@v4
-
-      - name: "Setup Node 22"
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          #cache: npm
-
-      - name: "Install"
-        run: |
-          npm install
-
-      - name: "Build"
-        run: |
-          npm run build
-
-      - name: "Verify"
-        run: |
-          git status --porcelain dist/
-          if [ ! -d "dist" ];then
-            echo "Missing dist directory, run: npm build"
-            exit 1
-          fi
-          if [ -n "$(git status --porcelain dist)" ];then
-            echo "Build was not run, run: npm build"
-            exit 1
-          fi
-
-      - name: "Verify Failed"
-        if: ${{ failure() && github.event_name == 'pull_request' }}
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          echo "Adding comment to PR number: ${{ github.event.number }}"
-          comment='@${{ github.triggering_actor }} - run `npm run build` then add, commit and push the `dist` folder.'
-          echo "${comment}"
-          gh pr comment ${{ github.event.number }} --body "${comment}"
+      - name: "ESLint Annotate"
+        if: ${{ !cancelled() && steps.eslint.outcome != 'success' }}
+        continue-on-error: true
+        uses: ataylorme/eslint-annotate-action@v3
