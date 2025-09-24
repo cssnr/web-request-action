@@ -9,10 +9,8 @@ export default [
     },
     settings: {
       env: {
-        browser: true,
+        node: true,
         es2021: true,
-        jquery: true,
-        webextensions: true,
       },
     },
     rules: {
