@@ -36,24 +36,30 @@ Supports all methods, uploading files, basic authentication and more.
 
 ## Inputs
 
-| Input    | Required | Default | Description                |
-| :------- | :------: | :------ | :------------------------- |
-| url      | **Yes**  | -       | URL for Request            |
-| method   |    -     | `POST`  | Request Method             |
-| data     |    -     | -       | Request Data JSON \*       |
-| headers  |    -     | -       | Request Headers JSON       |
-| params   |    -     | -       | Request Parameters JSON \* |
-| username |    -     | -       | Basic Auth Username        |
-| password |    -     | -       | Basic Auth Password        |
-| insecure |    -     | `false` | Ignore SSL Errors          |
-| file     |    -     | -       | File Path to Send \*       |
-| name     |    -     | `file`  | File Form Key Name         |
+| Input    | Default    | Description&nbsp;of&nbsp;the&nbsp;Input&nbsp;Value |
+| :------- | :--------- | :------------------------------------------------- |
+| url      | _Required_ | URL for Request                                    |
+| method   | `POST`     | Request Method                                     |
+| data     | -          | Request Data JSON [⤵️](#data)                      |
+| headers  | -          | Request Headers JSON                               |
+| params   | -          | Request Parameters JSON [⤵️](#params)              |
+| username | -          | Basic Auth Username                                |
+| password | -          | Basic Auth Password                                |
+| insecure | `false`    | Ignore SSL Errors                                  |
+| file     | -          | File Path to Send [⤵️](#file)                      |
+| name     | `file`     | File Form Key Name                                 |
 
-**data** - Only used for `PUT`, `POST`, `DELETE`, and `PATCH`. Data is parsed with `JSON.parse`.
+### data
 
-**params** - These can be specified in the URL or added here as JSON key/value pairs.
+Only used for `PUT`, `POST`, `DELETE`, and `PATCH`. Data is parsed with `JSON.parse`.
 
-**file** - When sending a file, `multipart/form-data` wil be used and `data` will be added to the form data with the
+### params
+
+These can be specified in the URL or added here as JSON key/value pairs.
+
+### file
+
+When sending a file, `multipart/form-data` wil be used and `data` will be added to the form data with the
 key `name`. The file path is relative to the workspace/working directory.
 
 For more information on inputs, see: https://axios-http.com/docs/req_config
