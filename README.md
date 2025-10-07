@@ -53,6 +53,18 @@ Supports all methods, uploading files, basic authentication and more.
 
 Only used for `PUT`, `POST`, `DELETE`, and `PATCH`. Data is parsed with `JSON.parse`.
 
+<details><summary>View Multi-Line JSON Example</summary>
+
+```yaml
+data: |
+  {
+    "key1": "value1",
+    "key2": "value2"
+  }
+```
+
+</details>
+
 ### params
 
 These can be specified in the URL or added here as JSON key/value pairs.
