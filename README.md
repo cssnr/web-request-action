@@ -8,7 +8,7 @@
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=cssnr_web-request-action&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=cssnr_web-request-action)
 [![GitHub Last Commit](https://img.shields.io/github/last-commit/cssnr/web-request-action?logo=github&label=updated)](https://github.com/cssnr/web-request-action/pulse)
 [![Codeberg Last Commit](https://img.shields.io/gitea/last-commit/cssnr/web-request-action/master?gitea_url=https%3A%2F%2Fcodeberg.org%2F&logo=codeberg&logoColor=white&label=updated)](https://codeberg.org/cssnr/web-request-action)
-[![GitHub Contributors](https://img.shields.io/github/contributors/cssnr/web-request-action?logo=github)](https://github.com/cssnr/web-request-action/graphs/contributors)
+[![GitHub Contributors](https://img.shields.io/github/contributors-anon/cssnr/web-request-action?logo=github)](https://github.com/cssnr/web-request-action/graphs/contributors)
 [![GitHub Repo Size](https://img.shields.io/github/repo-size/cssnr/web-request-action?logo=bookstack&logoColor=white&label=repo%20size)](https://github.com/cssnr/web-request-action?tab=readme-ov-file#readme)
 [![GitHub Top Language](https://img.shields.io/github/languages/top/cssnr/web-request-action?logo=htmx)](https://github.com/cssnr/web-request-action)
 [![GitHub Forks](https://img.shields.io/github/forks/cssnr/web-request-action?style=flat&logo=github)](https://github.com/cssnr/web-request-action/forks)
@@ -119,6 +119,17 @@ For more information on inputs, see: https://axios-http.com/docs/req_config
 ```
 
 </details>
+<details open><summary>Deploy to Render</summary>
+
+```yaml
+- name: 'Render Deploy'
+  uses: cssnr/web-request-action@v1
+  with:
+    url: ${{ secrets.RENDER_HOOK }}
+    params: '{"imgURL": "ghcr.io/${{ github.repository }}:${{ github.ref_name }}"}'
+```
+
+</details>
 <details><summary>Make a GET Request</summary>
 
 ```yaml
@@ -204,17 +215,18 @@ For more information, see the CSSNR [SUPPORT.md](https://github.com/cssnr/.githu
 
 # Contributing
 
+If you would like to submit a PR, please review the [CONTRIBUTING.md](#contributing-ov-file).
+
 Please consider making a donation to support the development of this project
 and [additional](https://cssnr.com/) open source projects.
 
 [![Ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/cssnr)
 
-If you would like to submit a PR, please review the [CONTRIBUTING.md](#contributing-ov-file).
-
 Additionally, you can support other GitHub Actions I have published:
 
 - [Stack Deploy Action](https://github.com/cssnr/stack-deploy-action?tab=readme-ov-file#readme)
-- [Portainer Stack Deploy](https://github.com/cssnr/portainer-stack-deploy-action?tab=readme-ov-file#readme)
+- [Portainer Stack Deploy Action](https://github.com/cssnr/portainer-stack-deploy-action?tab=readme-ov-file#readme)
+- [Docker Context Action](https://github.com/cssnr/docker-context-action?tab=readme-ov-file#readme)
 - [VirusTotal Action](https://github.com/cssnr/virustotal-action?tab=readme-ov-file#readme)
 - [Mirror Repository Action](https://github.com/cssnr/mirror-repository-action?tab=readme-ov-file#readme)
 - [Update Version Tags Action](https://github.com/cssnr/update-version-tags-action?tab=readme-ov-file#readme)
@@ -262,4 +274,4 @@ Note: The `docker-test-action` builds, runs and pushes images to [GitHub Contain
 
 </details>
 
-For a full list of current projects visit: [https://cssnr.github.io/](https://cssnr.github.io/)
+For a full list of current projects to support visit: [https://cssnr.github.io/](https://cssnr.github.io/)
