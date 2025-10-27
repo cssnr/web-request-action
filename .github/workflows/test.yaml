@@ -25,12 +25,23 @@ jobs:
       - name: "Checkout"
         uses: actions/checkout@v5
 
+      - name: "Debug CTX github"
+        if: ${{ !github.event.act }}
+        continue-on-error: true
+        env:
+          GITHUB_CTX: ${{ toJSON(github) }}
+        run: echo "$GITHUB_CTX"
+
       - name: "Test Local Action"
         id: test
         uses: ./
         with:
           url: https://httpbin.org/post
-          data: '{"key": "value"}'
+          #data: '{"key": "value"}'
+          data: |
+            key: value
+          params: |
+            param1: value1
 
       - name: "Verify Outputs"
         run: |

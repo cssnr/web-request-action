@@ -3,6 +3,7 @@ const axios = require('axios')
 const FormData = require('form-data')
 const fs = require('fs')
 const https = require('https')
+const yaml = require('js-yaml')
 
 ;(async () => {
     try {
@@ -11,11 +12,11 @@ const https = require('https')
         console.log('url:', url)
         const method = core.getInput('method', { required: true })
         console.log('method:', method)
-        let data = JSON.parse(core.getInput('data'))
+        let data = parseData('data')
         console.log('data:', data)
-        const headers = JSON.parse(core.getInput('headers'))
+        const headers = parseData('headers')
         console.log('headers:', headers)
-        const params = JSON.parse(core.getInput('params'))
+        const params = parseData('params')
         console.log('params:', params)
         const username = core.getInput('username')
         console.log('username:', username)
@@ -78,3 +79,28 @@ const https = require('https')
         core.setFailed(e.message)
     }
 })()
+
+/**
+ * Parse Data from Input
+ * @param input
+ * @return {Object}
+ */
+function parseData(input) {
+    const data = core.getInput(input)
+    if (!data) return {}
+    core.debug(`Parsing input "${input}" with value:\n${data}`)
+    // console.log(`Parsing input "${input}" with value:\n${data}`)
+    try {
+        return JSON.parse(data)
+    } catch (e) {
+        core.debug(`${input} - JSON.parse failed: ${e.message}`)
+        // console.log(`${input} - JSON.parse failed:`, e.message)
+    }
+    try {
+        return yaml.load(data)
+    } catch (e) {
+        core.debug(`${input} - yaml.load failed: ${e.message}`)
+        // console.log(`${input} - yaml.load failed:`, e.message)
+    }
+    throw new Error(`Unable to parse "${input}" with value: ${data}`)
+}
