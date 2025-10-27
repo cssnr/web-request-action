@@ -40,9 +40,9 @@ Supports all methods, uploading files, basic authentication and more.
 | :------- | :--------- | :------------------------------------------------- |
 | url      | _Required_ | URL for Request                                    |
 | method   | `POST`     | Request Method                                     |
-| data     | -          | Request Data JSON [⤵️](#data)                      |
-| headers  | -          | Request Headers JSON                               |
-| params   | -          | Request Parameters JSON [⤵️](#params)              |
+| data     | -          | Request Data JSON/YAML [⤵️](#data)                 |
+| headers  | -          | Request Headers JSON/YAML                          |
+| params   | -          | Request Parameters JSON/YAML [⤵️](#params)         |
 | username | -          | Basic Auth Username                                |
 | password | -          | Basic Auth Password                                |
 | insecure | `false`    | Ignore SSL Errors                                  |
@@ -51,9 +51,9 @@ Supports all methods, uploading files, basic authentication and more.
 
 ### data
 
-Only used for `PUT`, `POST`, `DELETE`, and `PATCH`. Data is parsed with `JSON.parse`.
+Only used for `PUT`, `POST`, `DELETE`, and `PATCH`. Data is parsed with `JSON.parse` then `yaml.load`.
 
-<details><summary>View Multi-Line JSON Example</summary>
+<details><summary>View Multi-Line JSON/YAML Example</summary>
 
 ```yaml
 data: |
@@ -61,6 +61,12 @@ data: |
     "key1": "value1",
     "key2": "value2"
   }
+```
+
+```yaml
+data: |
+  key1: value1
+  key2: value2
 ```
 
 </details>

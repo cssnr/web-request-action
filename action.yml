@@ -14,13 +14,10 @@ inputs:
     default: "POST"
   data:
     description: "Request Data JSON"
-    default: "{}"
   headers:
     description: "Request Headers JSON"
-    default: "{}"
   params:
     description: "Request Parameters JSON"
-    default: "{}"
   username:
     description: "Basic Auth Username"
   password:
