@@ -86,7 +86,7 @@ Body JSON or YAML data. Only used for `PUT`, `POST`, `DELETE`, and `PATCH`.
 
 Data is parsed with `JSON.parse` or `yaml.load`, [js-yaml](https://github.com/nodeca/js-yaml).
 
-<details><summary>View Multi-Line JSON/YAML Example</summary>
+<details><summary>View JSON/YAML Example</summary>
 
 ```yaml
 data: |
