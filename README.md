@@ -29,6 +29,27 @@
 
 Easily make a web request from a workflow using Axios.
 Supports all methods, uploading files, basic authentication and more.
+Pass data/headers/params as JSON or YAML formatted strings.
+
+```yaml
+- name: 'Web Request'
+  uses: cssnr/web-request-action@v1
+  with:
+    url: https://httpbin.org/post
+    method: 'POST'
+    data: '{"key": "value"}'
+    headers: |
+      key: value
+    params: |
+      {
+        "key": "value"
+      }
+    username: ${{ secrets.USERNAME }}
+    password: ${{ secrets.PASSWORD }}
+    insecure: false
+    file: path/to/file.txt
+    name: file
+```
 
 > [!NOTE]  
 > Please submit a [Feature Request](https://github.com/cssnr/web-request-action/discussions/categories/feature-requests)
@@ -38,10 +59,10 @@ Supports all methods, uploading files, basic authentication and more.
 
 | Input    | Default    | Description&nbsp;of&nbsp;the&nbsp;Input&nbsp;Value |
 | :------- | :--------- | :------------------------------------------------- |
-| url      | _Required_ | URL for Request                                    |
-| method   | `POST`     | Request Method                                     |
+| url      | _Required_ | URL for Request [⤵️](#url)                         |
+| method   | `POST`     | Request Method [⤵️](#method)                       |
 | data     | -          | Request Data JSON/YAML [⤵️](#data)                 |
-| headers  | -          | Request Headers JSON/YAML                          |
+| headers  | -          | Request Headers JSON/YAML [⤵️](#headers)           |
 | params   | -          | Request Parameters JSON/YAML [⤵️](#params)         |
 | username | -          | Basic Auth Username                                |
 | password | -          | Basic Auth Password                                |
@@ -49,11 +70,29 @@ Supports all methods, uploading files, basic authentication and more.
 | file     | -          | File Path to Send [⤵️](#file)                      |
 | name     | `file`     | File Form Key Name                                 |
 
+### url
+
+The URL to send the request too. You may include params here or in the [params](#params) key.
+
+### method
+
+The request method, including custom methods.
+
+Default: `POST`
+
 ### data
 
-Only used for `PUT`, `POST`, `DELETE`, and `PATCH`. Data is parsed with `JSON.parse` then `yaml.load`.
+Body JSON or YAML data. Only used for `PUT`, `POST`, `DELETE`, and `PATCH`.
 
-<details><summary>View Multi-Line JSON/YAML Example</summary>
+Data is parsed with `JSON.parse` or `yaml.load`, [js-yaml](https://github.com/nodeca/js-yaml).
+
+<details><summary>View JSON/YAML Example</summary>
+
+```yaml
+data: |
+  key1: value1
+  key2: value2
+```
 
 ```yaml
 data: |
@@ -63,17 +102,15 @@ data: |
   }
 ```
 
-```yaml
-data: |
-  key1: value1
-  key2: value2
-```
-
 </details>
+
+### headers
+
+Headers JSON or YAML data.
 
 ### params
 
-These can be specified in the URL or added here as JSON key/value pairs.
+Parameters, Query String, JSON or YAML data. These may also be provided in the [url](#url).
 
 ### file
 
@@ -91,10 +128,11 @@ For more information on inputs, see: https://axios-http.com/docs/req_config
 
 ## Outputs
 
-| Output | Description     |
-| :----- | :-------------- |
-| status | Response Status |
-| data   | Response Data   |
+| Output  | Description      |
+| :------ | :--------------- |
+| status  | Response Status  |
+| headers | Response Headers |
+| data    | Response Data    |
 
 ```yaml
 - name: 'Web Request'
@@ -106,6 +144,7 @@ For more information on inputs, see: https://axios-http.com/docs/req_config
 - name: 'Echo Output'
   run: |
     echo '${{ steps.test.outputs.status }}'
+    echo '${{ steps.test.outputs.headers }}'
     echo '${{ steps.test.outputs.data }}'
 ```
 
@@ -132,7 +171,8 @@ For more information on inputs, see: https://axios-http.com/docs/req_config
   uses: cssnr/web-request-action@v1
   with:
     url: ${{ secrets.RENDER_HOOK }}
-    params: '{"imgURL": "ghcr.io/${{ github.repository }}:${{ github.ref_name }}"}'
+    params: |
+      imgURL: ghcr.io/${{ github.repository }}:${{ github.ref_name }}
 ```
 
 </details>
@@ -166,6 +206,7 @@ For more information on inputs, see: https://axios-http.com/docs/req_config
   with:
     url: https://httpbin.org/post
     file: path/to/file.txt
+    name: file # Default - name of file key
 ```
 
 </details>
@@ -178,8 +219,12 @@ For more information on inputs, see: https://axios-http.com/docs/req_config
     url: https://httpbin.org/post
     method: 'POST'
     data: '{"key": "value"}'
-    headers: '{"header": "value"}'
-    params: '{"parameter": "value"}'
+    headers: |
+      key: value
+    params: |
+      {
+        "key": "value"
+      }
     username: ${{ secrets.USERNAME }}
     password: ${{ secrets.PASSWORD }}
     insecure: false

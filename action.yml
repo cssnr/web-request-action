@@ -34,6 +34,8 @@ inputs:
 outputs:
   status:
     description: "Response Status"
+  headers:
+    description: "Response Headers"
   data:
     description: "Response Data"
 

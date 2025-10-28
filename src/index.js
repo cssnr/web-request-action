@@ -8,6 +8,7 @@ const yaml = require('js-yaml')
 ;(async () => {
     try {
         // Inputs
+        core.startGroup('Inputs')
         const url = core.getInput('url', { required: true })
         console.log('url:', url)
         const method = core.getInput('method', { required: true })
@@ -28,6 +29,7 @@ const yaml = require('js-yaml')
         console.log('file:', file)
         const name = core.getInput('name')
         console.log('name:', name)
+        core.endGroup() // Inputs
 
         // Options
         const auth = username && password ? { username, password } : {}
@@ -62,14 +64,20 @@ const yaml = require('js-yaml')
         }
         console.log('config:', config)
         const response = await axios.request(config)
+        console.log('response.status:', response.status)
         // console.log('response:', response)
         // console.log('response.request._headers:', response.request._headers)
-        // console.log('response.headers:', response.headers)
-        console.log('response.status:', response.status)
+        core.startGroup('Headers')
+        console.log('response.headers:', response.headers)
+        core.endGroup() // Headers
+
+        core.startGroup('Data')
         console.log('response.data:', response.data)
+        core.endGroup() // Data
 
         // Outputs
         core.setOutput('status', response.status)
+        core.setOutput('headers', response.headers)
         core.setOutput('data', response.data)
 
         core.info(`\u001b[32;1mFinished Success`)
