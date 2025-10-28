@@ -36240,7 +36240,7 @@ module.exports = parseParams
 /***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
 "use strict";
-/*! Axios v1.13.0 Copyright (c) 2025 Matt Zabriskie and contributors */
+/*! Axios v1.13.1 Copyright (c) 2025 Matt Zabriskie and contributors */
 
 
 const FormData$1 = __nccwpck_require__(6454);
@@ -38400,7 +38400,7 @@ function buildFullPath(baseURL, requestedURL, allowAbsoluteUrls) {
   return requestedURL;
 }
 
-const VERSION = "1.13.0";
+const VERSION = "1.13.1";
 
 function parseProtocol(url) {
   const match = /^([-+\w]{1,25})(:?\/\/|:)/.exec(url);
@@ -39676,7 +39676,7 @@ const httpAdapter = isHttpAdapterSupported && function httpAdapter(config) {
 
       if (responseType === 'stream') {
         response.data = responseStream;
-        settle(resolve, abort, response);
+        settle(resolve, reject, response);
       } else {
         const responseBuffer = [];
         let totalResponseBytes = 0;
@@ -41538,6 +41538,7 @@ const yaml = __nccwpck_require__(4281)
 ;(async () => {
     try {
         // Inputs
+        core.startGroup('Inputs')
         const url = core.getInput('url', { required: true })
         console.log('url:', url)
         const method = core.getInput('method', { required: true })
@@ -41558,6 +41559,7 @@ const yaml = __nccwpck_require__(4281)
         console.log('file:', file)
         const name = core.getInput('name')
         console.log('name:', name)
+        core.endGroup() // Inputs
 
         // Options
         const auth = username && password ? { username, password } : {}
@@ -41592,14 +41594,20 @@ const yaml = __nccwpck_require__(4281)
         }
         console.log('config:', config)
         const response = await axios.request(config)
+        console.log('response.status:', response.status)
         // console.log('response:', response)
         // console.log('response.request._headers:', response.request._headers)
-        // console.log('response.headers:', response.headers)
-        console.log('response.status:', response.status)
+        core.startGroup('Headers')
+        console.log('response.headers:', response.headers)
+        core.endGroup() // Headers
+
+        core.startGroup('Data')
         console.log('response.data:', response.data)
+        core.endGroup() // Data
 
         // Outputs
         core.setOutput('status', response.status)
+        core.setOutput('headers', response.headers)
         core.setOutput('data', response.data)
 
         core.info(`\u001b[32;1mFinished Success`)

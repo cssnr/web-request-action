@@ -29,6 +29,27 @@
 
 Easily make a web request from a workflow using Axios.
 Supports all methods, uploading files, basic authentication and more.
+Pass data/headers/params as JSON or YAML formatted strings.
+
+```yaml
+- name: 'Web Request'
+  uses: cssnr/web-request-action@v1
+  with:
+    url: https://httpbin.org/post
+    method: 'POST'
+    data: '{"key": "value"}'
+    headers: |
+      key: value
+    params: |
+      {
+        "key": "value"
+      }
+    username: ${{ secrets.USERNAME }}
+    password: ${{ secrets.PASSWORD }}
+    insecure: false
+    file: path/to/file.txt
+    name: file
+```
 
 > [!NOTE]  
 > Please submit a [Feature Request](https://github.com/cssnr/web-request-action/discussions/categories/feature-requests)
@@ -57,16 +78,16 @@ Only used for `PUT`, `POST`, `DELETE`, and `PATCH`. Data is parsed with `JSON.pa
 
 ```yaml
 data: |
-  {
-    "key1": "value1",
-    "key2": "value2"
-  }
+  key1: value1
+  key2: value2
 ```
 
 ```yaml
 data: |
-  key1: value1
-  key2: value2
+  {
+    "key1": "value1",
+    "key2": "value2"
+  }
 ```
 
 </details>
@@ -91,10 +112,11 @@ For more information on inputs, see: https://axios-http.com/docs/req_config
 
 ## Outputs
 
-| Output | Description     |
-| :----- | :-------------- |
-| status | Response Status |
-| data   | Response Data   |
+| Output  | Description      |
+| :------ | :--------------- |
+| status  | Response Status  |
+| headers | Response Headers |
+| data    | Response Data    |
 
 ```yaml
 - name: 'Web Request'
@@ -106,6 +128,7 @@ For more information on inputs, see: https://axios-http.com/docs/req_config
 - name: 'Echo Output'
   run: |
     echo '${{ steps.test.outputs.status }}'
+    echo '${{ steps.test.outputs.headers }}'
     echo '${{ steps.test.outputs.data }}'
 ```
 
