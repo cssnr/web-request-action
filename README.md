@@ -59,10 +59,10 @@ Pass data/headers/params as JSON or YAML formatted strings.
 
 | Input    | Default    | Description&nbsp;of&nbsp;the&nbsp;Input&nbsp;Value |
 | :------- | :--------- | :------------------------------------------------- |
-| url      | _Required_ | URL for Request                                    |
-| method   | `POST`     | Request Method                                     |
+| url      | _Required_ | URL for Request [⤵️](#url)                         |
+| method   | `POST`     | Request Method [⤵️](#method)                       |
 | data     | -          | Request Data JSON/YAML [⤵️](#data)                 |
-| headers  | -          | Request Headers JSON/YAML                          |
+| headers  | -          | Request Headers JSON/YAML [⤵️](#headers)           |
 | params   | -          | Request Parameters JSON/YAML [⤵️](#params)         |
 | username | -          | Basic Auth Username                                |
 | password | -          | Basic Auth Password                                |
@@ -70,9 +70,21 @@ Pass data/headers/params as JSON or YAML formatted strings.
 | file     | -          | File Path to Send [⤵️](#file)                      |
 | name     | `file`     | File Form Key Name                                 |
 
+### url
+
+The URL to send the request too. You may include params here or in the [params](#params) key.
+
+### method
+
+The request method, including custom methods.
+
+Default: `POST`
+
 ### data
 
-Only used for `PUT`, `POST`, `DELETE`, and `PATCH`. Data is parsed with `JSON.parse` then `yaml.load`.
+Body JSON or YAML data. Only used for `PUT`, `POST`, `DELETE`, and `PATCH`.
+
+Data is parsed with `JSON.parse` or `yaml.load`, [js-yaml](https://github.com/nodeca/js-yaml).
 
 <details><summary>View Multi-Line JSON/YAML Example</summary>
 
@@ -92,9 +104,13 @@ data: |
 
 </details>
 
+### headers
+
+Headers JSON or YAML data.
+
 ### params
 
-These can be specified in the URL or added here as JSON key/value pairs.
+Parameters, Query String, JSON or YAML data. These may also be provided in the [url](#url).
 
 ### file
 
@@ -155,7 +171,8 @@ For more information on inputs, see: https://axios-http.com/docs/req_config
   uses: cssnr/web-request-action@v1
   with:
     url: ${{ secrets.RENDER_HOOK }}
-    params: '{"imgURL": "ghcr.io/${{ github.repository }}:${{ github.ref_name }}"}'
+    params: |
+      imgURL: ghcr.io/${{ github.repository }}:${{ github.ref_name }}
 ```
 
 </details>
@@ -189,6 +206,7 @@ For more information on inputs, see: https://axios-http.com/docs/req_config
   with:
     url: https://httpbin.org/post
     file: path/to/file.txt
+    name: file # Default - name of file key
 ```
 
 </details>
@@ -201,8 +219,12 @@ For more information on inputs, see: https://axios-http.com/docs/req_config
     url: https://httpbin.org/post
     method: 'POST'
     data: '{"key": "value"}'
-    headers: '{"header": "value"}'
-    params: '{"parameter": "value"}'
+    headers: |
+      key: value
+    params: |
+      {
+        "key": "value"
+      }
     username: ${{ secrets.USERNAME }}
     password: ${{ secrets.PASSWORD }}
     insecure: false
