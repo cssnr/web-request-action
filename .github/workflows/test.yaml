@@ -48,7 +48,7 @@ jobs:
             param1: value1
 
       - name: "1: Verify Data"
-        #if: ${{ !github.event.act }}
+        if: ${{ !github.event.act }}
         run: |
           echo 'status: ${{ steps.test1.outputs.status }}'
           echo 'headers: ${{ steps.test1.outputs.headers }}'
@@ -59,7 +59,7 @@ jobs:
           fi
 
       - name: "2: Test File"
-        #if: ${{ !github.event.act }}
+        if: ${{ !github.event.act }}
         id: test2
         uses: ./
         with:
@@ -74,7 +74,7 @@ jobs:
           filename: not-event.json
 
       - name: "2: Verify File"
-        #if: ${{ !github.event.act }}
+        if: ${{ !github.event.act }}
         run: |
           echo 'status: ${{ steps.test2.outputs.status }}'
           echo 'headers: ${{ steps.test2.outputs.headers }}'

@@ -13,11 +13,11 @@ inputs:
     description: "Request Method"
     default: "POST"
   data:
-    description: "Request Data JSON"
+    description: "Request Data JSON/YAML"
   headers:
-    description: "Request Headers JSON"
+    description: "Request Headers JSON/YAML"
   params:
-    description: "Request Parameters JSON"
+    description: "Request Parameters JSON/YAML"
   username:
     description: "Basic Auth Username"
   password:

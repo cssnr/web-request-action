@@ -47,7 +47,7 @@ async function main() {
           })
         : null
     console.log('httpsAgent:', httpsAgent)
-    const auth = username && password ? { username, password } : {}
+    const auth = username || password ? { username, password } : {}
     console.log('auth:', auth)
     const options = filename ? { filename } : {}
     console.log('options:', options)
