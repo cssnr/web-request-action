@@ -15,6 +15,9 @@ on:
       - "action.yml"
   pull_request:
 
+env:
+  httpbin: ${{ !github.event.act && 'https://httpbin.org' || 'http://192.168.1.25:8080' }}
+
 jobs:
   test:
     name: "Test"
@@ -36,8 +39,7 @@ jobs:
         id: test1
         uses: ./
         with:
-          url: https://httpbin.org/post
-          #url: http://192.168.1.25:8080/post
+          url: "${{ env.httpbin }}/post"
           #insecure: true
           #data: '{"key": "value"}'
           data: |
@@ -61,8 +63,7 @@ jobs:
         id: test2
         uses: ./
         with:
-          url: https://httpbin.org/post
-          #url: http://192.168.1.25:8080/post
+          url: "${{ env.httpbin }}/post"
           #insecure: true
           #data: '{"key": "value"}'
           data: |

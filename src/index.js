@@ -1,15 +1,17 @@
+const fs = require('node:fs')
+const https = require('node:https')
+const FormData = require('node:form-data')
+
 const core = require('@actions/core')
+
 const axios = require('axios')
-const FormData = require('form-data')
-const fs = require('fs')
-const https = require('https')
 const yaml = require('js-yaml')
 
 async function main() {
     const version = process.env.GITHUB_ACTION_REF
-        ? `\u001b[35;1m${process.env.GITHUB_ACTION_REF}`
+        ? `${process.env.GITHUB_ACTION_REF}`
         : 'Source'
-    core.info(`🏳️ Starting Web Request Action - ${version}`)
+    core.info(`🏳️ Starting Web Request Action - \u001b[35;1m${version}`)
 
     // Inputs
     core.startGroup('Inputs')
@@ -65,7 +67,7 @@ async function main() {
 
     // Config
     const config = {
-        url,
+        url: new URL(url),
         method,
         headers,
         params,

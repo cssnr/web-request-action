@@ -34475,6 +34475,30 @@ module.exports = require("node:events");
 
 /***/ }),
 
+/***/ 3264:
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("node:form-data");
+
+/***/ }),
+
+/***/ 3024:
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("node:fs");
+
+/***/ }),
+
+/***/ 4708:
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("node:https");
+
+/***/ }),
+
 /***/ 7075:
 /***/ ((module) => {
 
@@ -41533,18 +41557,20 @@ module.exports = /*#__PURE__*/JSON.parse('{"application/1d-interleaved-parityfec
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
+const fs = __nccwpck_require__(3024)
+const https = __nccwpck_require__(4708)
+const src_FormData = __nccwpck_require__(3264)
+
 const core = __nccwpck_require__(7484)
+
 const axios = __nccwpck_require__(7269)
-const src_FormData = __nccwpck_require__(6454)
-const fs = __nccwpck_require__(9896)
-const https = __nccwpck_require__(5692)
 const yaml = __nccwpck_require__(4281)
 
 async function main() {
     const version = process.env.GITHUB_ACTION_REF
-        ? `\u001b[35;1m${process.env.GITHUB_ACTION_REF}`
+        ? `${process.env.GITHUB_ACTION_REF}`
         : 'Source'
-    core.info(`🏳️ Starting Web Request Action - ${version}`)
+    core.info(`🏳️ Starting Web Request Action - \u001b[35;1m${version}`)
 
     // Inputs
     core.startGroup('Inputs')
@@ -41600,7 +41626,7 @@ async function main() {
 
     // Config
     const config = {
-        url,
+        url: new URL(url),
         method,
         headers,
         params,
