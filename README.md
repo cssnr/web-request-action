@@ -34,7 +34,7 @@ Pass data/headers/params as JSON or YAML formatted strings.
 
 ```yaml
 - name: 'Web Request'
-  uses: cssnr/web-request-action@v1
+  uses: cssnr/web-request-action@v2
   with:
     url: https://httpbin.org/post
     method: 'POST'
@@ -162,7 +162,7 @@ Note: All outputs are run through `JSON.stringify` by default.
 ```yaml
 - name: 'Web Request'
   id: test
-  uses: cssnr/web-request-action@v1
+  uses: cssnr/web-request-action@v2
   with:
     url: https://httpbin.org/post
 
@@ -181,7 +181,7 @@ Note: All outputs are run through `JSON.stringify` by default.
 
 ```yaml
 - name: 'Portainer Webhook'
-  uses: cssnr/web-request-action@v1
+  uses: cssnr/web-request-action@v2
   with:
     url: ${{ secrets.PORTAINER_WEBHOOK }}
 ```
@@ -191,7 +191,7 @@ Note: All outputs are run through `JSON.stringify` by default.
 
 ```yaml
 - name: 'Start Algolia Crawl'
-  uses: cssnr/web-request-action@v1
+  uses: cssnr/web-request-action@v2
   with:
     url: https://crawler.algolia.com/api/1/crawlers/${{ secrets.CRAWLER_ID }}/reindex
     username: ${{ secrets.CRAWLER_USER_ID }}
@@ -203,7 +203,7 @@ Note: All outputs are run through `JSON.stringify` by default.
 
 ```yaml
 - name: 'Render Deploy Image'
-  uses: cssnr/web-request-action@v1
+  uses: cssnr/web-request-action@v2
   with:
     url: ${{ secrets.RENDER_HOOK }}
     params: |
@@ -215,7 +215,7 @@ Note: All outputs are run through `JSON.stringify` by default.
 
 ```yaml
 - name: 'Web Request'
-  uses: cssnr/web-request-action@v1
+  uses: cssnr/web-request-action@v2
   with:
     url: https://httpbin.org/get
     method: 'GET'
@@ -226,7 +226,7 @@ Note: All outputs are run through `JSON.stringify` by default.
 
 ```yaml
 - name: 'Web Request'
-  uses: cssnr/web-request-action@v1
+  uses: cssnr/web-request-action@v2
   with:
     url: https://httpbin.org/post
     data: '{"key": "value"}'
@@ -243,7 +243,7 @@ Note: All data keys are identical as exemplar formats.
 
 ```yaml
 - name: 'Web Request'
-  uses: cssnr/web-request-action@v1
+  uses: cssnr/web-request-action@v2
   with:
     url: https://httpbin.org/post
     file: path/to/file.txt
@@ -256,7 +256,7 @@ Note: All data keys are identical as exemplar formats.
 
 ```yaml
 - name: 'Web Request'
-  uses: cssnr/web-request-action@v1
+  uses: cssnr/web-request-action@v2
   with:
     url: https://httpbin.org/post
     config: |
@@ -271,7 +271,7 @@ Reference: https://axios-http.com/docs/req_config
 
 ```yaml
 - name: 'Web Request'
-  uses: cssnr/web-request-action@v1
+  uses: cssnr/web-request-action@v2
   with:
     url: https://httpbin.org/post
     method: 'POST'
