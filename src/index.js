@@ -67,7 +67,7 @@ async function main() {
 
     // Config
     const config = {
-        url: new URL(url),
+        url,
         method,
         headers,
         params,
