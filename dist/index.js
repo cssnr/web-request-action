@@ -41598,7 +41598,7 @@ async function main() {
         data = form
     }
 
-    // Request
+    // Config
     const config = {
         url,
         method,
@@ -41608,11 +41608,14 @@ async function main() {
         auth,
         httpsAgent,
     }
+    core.startGroup('Config')
     console.log('config:', config)
+    core.endGroup() // Config
+
+    // Request
     core.info('⌛ Processing Request')
     const response = await axios.request(config)
     console.log('response.status:', response.status)
-
     // console.log('response:', response)
     // console.log('response.request._headers:', response.request._headers)
 
