@@ -1,10 +1,10 @@
 const fs = require('node:fs')
 const https = require('node:https')
-const FormData = require('node:form-data')
 
 const core = require('@actions/core')
 
 const axios = require('axios')
+const FormData = require('form-data')
 const yaml = require('js-yaml')
 
 async function main() {
