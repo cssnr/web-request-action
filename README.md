@@ -50,7 +50,7 @@ Pass data/headers/params as JSON or YAML formatted strings.
     insecure: false
     file: path/to/file.txt
     name: file
-    filename: better-file-name.txt
+    filename: custom-name.txt
 ```
 
 > [!NOTE]  
@@ -71,7 +71,7 @@ Pass data/headers/params as JSON or YAML formatted strings.
 | insecure | `false`            | Ignore SSL Errors                                  |
 | file     | -                  | File Path to Send [⤵️](#file)                      |
 | name     | `file`             | File Form Key Name                                 |
-| filename | _Original Name_    | Set a File Name                                    |
+| filename | _Original Name_    | Set a Different File Name                          |
 
 ### url
 
