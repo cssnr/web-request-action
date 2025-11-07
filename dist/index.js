@@ -41576,6 +41576,8 @@ async function main() {
     console.log('headers:', headers)
     const params = parseData('params')
     console.log('params:', params)
+    let config = parseData('config')
+    console.log('config:', config)
     const username = core.getInput('username')
     console.log('username:', username)
     const password = core.getInput('password')
@@ -41611,21 +41613,14 @@ async function main() {
         for (const [key, value] of Object.entries(data)) {
             form.append(key, value)
         }
+        core.debug(`Adding file: ${file}`)
         form.append(name, fs.createReadStream(file), options)
         Object.assign(headers, form.getHeaders())
         data = form
     }
 
     // Config
-    const config = {
-        url,
-        method,
-        headers,
-        params,
-        data,
-        auth,
-        httpsAgent,
-    }
+    config = { url, method, headers, params, data, auth, httpsAgent, ...config }
     core.startGroup('Config')
     console.log('config:', config)
     core.endGroup() // Config
@@ -41635,6 +41630,7 @@ async function main() {
     const response = await axios.request(config)
     console.log('response.status:', response.status)
     // console.log('response:', response)
+    // console.log('responseUrl:', response.request?.res?.responseUrl)
     // console.log('response.request._headers:', response.request._headers)
 
     core.startGroup('Headers')
@@ -41650,6 +41646,7 @@ async function main() {
     core.setOutput('status', response.status)
     core.setOutput('headers', response.headers)
     core.setOutput('data', response.data)
+    // core.setOutput('url', response.request?.res?.responseUrl || '')
 
     core.info(`✅ \u001b[32;1mFinished Success`)
 }

@@ -46,6 +46,8 @@ jobs:
             key: value
           params: |
             param1: value1
+          config: |
+            timeout: 30000
 
       - name: "1: Verify Data"
         if: ${{ !github.event.act }}

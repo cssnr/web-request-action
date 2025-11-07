@@ -18,6 +18,8 @@ inputs:
     description: "Request Headers JSON/YAML"
   params:
     description: "Request Parameters JSON/YAML"
+  config:
+    description: "Axios Config JSON/YAML"
   username:
     description: "Basic Auth Username"
   password:
@@ -40,6 +42,8 @@ outputs:
     description: "Response Headers"
   data:
     description: "Response Data"
+  #url:
+  #  description: "Response URL"
 
 runs:
   using: "node24"

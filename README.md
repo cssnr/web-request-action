@@ -66,6 +66,7 @@ Pass data/headers/params as JSON or YAML formatted strings.
 | data     | -                  | Request Data JSON/YAML [⤵️](#data)                 |
 | headers  | -                  | Request Headers JSON/YAML [⤵️](#headers)           |
 | params   | -                  | Request Parameters JSON/YAML [⤵️](#params)         |
+| config   | -                  | Axios Config JSON/YAML [⤵️](#config)               |
 | username | -                  | Basic Auth Username                                |
 | password | -                  | Basic Auth Password                                |
 | insecure | `false`            | Ignore SSL Errors                                  |
@@ -79,7 +80,7 @@ The URL to send the request too. You may include params here or in the [params](
 
 ### method
 
-The request method, including custom methods.
+The request method, including custom methods. Case-insensitive.
 
 Default: `POST`
 
@@ -114,6 +115,12 @@ Headers JSON or YAML data.
 ### params
 
 Parameters, Query String, JSON or YAML data. These may also be provided in the [url](#url).
+
+### config
+
+Additional Axios Config JSON or YAML data. For example, set a 3-second timeout: `timeout: 3000`
+
+Reference: https://axios-http.com/docs/req_config
 
 ### file
 
@@ -205,7 +212,23 @@ See the [Examples](#examples) for more usage options...
     url: https://httpbin.org/post
     file: path/to/file.txt
     name: file # Default - name of file key
+    filename: name.txt # Optional - file name
 ```
+
+</details>
+<details><summary>Set Axios Config</summary>
+
+```yaml
+- name: 'Web Request'
+  uses: cssnr/web-request-action@v1
+  with:
+    url: https://httpbin.org/post
+    config: |
+      timeout: 1000
+      maxContentLength: 2000
+```
+
+Reference: https://axios-http.com/docs/req_config
 
 </details>
 <details><summary>All Inputs</summary>
