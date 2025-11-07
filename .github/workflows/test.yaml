@@ -37,13 +37,18 @@ jobs:
         uses: ./
         with:
           url: https://httpbin.org/post
+          #url: http://192.168.1.25:8080/post
+          #insecure: true
           #data: '{"key": "value"}'
           data: |
             key: value
           params: |
             param1: value1
+          file: event.json
+          filename: not-event.json
 
       - name: "Verify Outputs"
+        if: ${{ !github.event.act }}
         run: |
           echo 'status: ${{ steps.test.outputs.status }}'
           echo 'headers: ${{ steps.test.outputs.headers }}'

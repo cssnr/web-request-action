@@ -41541,6 +41541,11 @@ const https = __nccwpck_require__(5692)
 const yaml = __nccwpck_require__(4281)
 
 async function main() {
+    const version = process.env.GITHUB_ACTION_REF
+        ? `\u001b[35;1m${process.env.GITHUB_ACTION_REF}`
+        : 'Source'
+    core.info(`🏳️ Starting Web Request Action - ${version}`)
+
     // Inputs
     core.startGroup('Inputs')
     const url = core.getInput('url', { required: true })
@@ -41563,25 +41568,32 @@ async function main() {
     console.log('file:', file)
     const name = core.getInput('name')
     console.log('name:', name)
+    const filename = core.getInput('filename')
+    console.log('filename:', filename)
     core.endGroup() // Inputs
 
     // Options
-    const auth = username && password ? { username, password } : {}
-    console.log('auth:', auth)
+    core.startGroup('Options')
     const httpsAgent = insecure
         ? new https.Agent({
               rejectUnauthorized: false,
           })
         : null
     console.log('httpsAgent:', httpsAgent)
+    const auth = username && password ? { username, password } : {}
+    console.log('auth:', auth)
+    const options = filename ? { filename } : {}
+    console.log('options:', options)
+    core.endGroup() // Options
 
     // File
     if (file) {
+        core.info('🔁 Converting Data to FormData')
         const form = new src_FormData()
         for (const [key, value] of Object.entries(data)) {
             form.append(key, value)
         }
-        form.append(name, fs.createReadStream(file))
+        form.append(name, fs.createReadStream(file), options)
         Object.assign(headers, form.getHeaders())
         data = form
     }
@@ -41597,10 +41609,13 @@ async function main() {
         httpsAgent,
     }
     console.log('config:', config)
+    core.info('⌛ Processing Request')
     const response = await axios.request(config)
     console.log('response.status:', response.status)
+
     // console.log('response:', response)
     // console.log('response.request._headers:', response.request._headers)
+
     core.startGroup('Headers')
     console.log('response.headers:', response.headers)
     core.endGroup() // Headers
@@ -41610,11 +41625,12 @@ async function main() {
     core.endGroup() // Data
 
     // Outputs
+    core.info('📩 Setting Outputs')
     core.setOutput('status', response.status)
     core.setOutput('headers', response.headers)
     core.setOutput('data', response.data)
 
-    core.info(`\u001b[32;1mFinished Success`)
+    core.info(`✅ \u001b[32;1mFinished Success`)
 }
 
 /**

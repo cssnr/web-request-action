@@ -50,6 +50,7 @@ Pass data/headers/params as JSON or YAML formatted strings.
     insecure: false
     file: path/to/file.txt
     name: file
+    filename: better-file-name.txt
 ```
 
 > [!NOTE]  
@@ -58,18 +59,19 @@ Pass data/headers/params as JSON or YAML formatted strings.
 
 ## Inputs
 
-| Input    | Default    | Description&nbsp;of&nbsp;the&nbsp;Input&nbsp;Value |
-| :------- | :--------- | :------------------------------------------------- |
-| url      | _Required_ | URL for Request [⤵️](#url)                         |
-| method   | `POST`     | Request Method [⤵️](#method)                       |
-| data     | -          | Request Data JSON/YAML [⤵️](#data)                 |
-| headers  | -          | Request Headers JSON/YAML [⤵️](#headers)           |
-| params   | -          | Request Parameters JSON/YAML [⤵️](#params)         |
-| username | -          | Basic Auth Username                                |
-| password | -          | Basic Auth Password                                |
-| insecure | `false`    | Ignore SSL Errors                                  |
-| file     | -          | File Path to Send [⤵️](#file)                      |
-| name     | `file`     | File Form Key Name                                 |
+| Input    | Default&nbsp;Value | Description&nbsp;of&nbsp;the&nbsp;Input&nbsp;Value |
+| :------- | :----------------- | :------------------------------------------------- |
+| url      | _Required_         | URL for Request [⤵️](#url)                         |
+| method   | `POST`             | Request Method [⤵️](#method)                       |
+| data     | -                  | Request Data JSON/YAML [⤵️](#data)                 |
+| headers  | -                  | Request Headers JSON/YAML [⤵️](#headers)           |
+| params   | -                  | Request Parameters JSON/YAML [⤵️](#params)         |
+| username | -                  | Basic Auth Username                                |
+| password | -                  | Basic Auth Password                                |
+| insecure | `false`            | Ignore SSL Errors                                  |
+| file     | -                  | File Path to Send [⤵️](#file)                      |
+| name     | `file`             | File Form Key Name                                 |
+| filename | _Original Name_    | Set a File Name                                    |
 
 ### url
 
@@ -120,12 +122,7 @@ key `name`. The file path is relative to the workspace/working directory.
 
 For more information on inputs, see: https://axios-http.com/docs/req_config
 
-```yaml
-- name: 'Web Request'
-  uses: cssnr/web-request-action@v1
-  with:
-    url: https://httpbin.org/post
-```
+See the [Examples](#examples) for more usage options...
 
 ## Outputs
 

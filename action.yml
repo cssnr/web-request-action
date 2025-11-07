@@ -30,6 +30,8 @@ inputs:
   name:
     description: "File Key Name"
     default: "file"
+  filename:
+    description: "Custom File Name"
 
 outputs:
   status:
