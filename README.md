@@ -45,11 +45,14 @@ Pass data/headers/params as JSON or YAML formatted strings.
       {
         "key": "value"
       }
+    config: |
+      timeout: 1000
     username: ${{ secrets.USERNAME }}
     password: ${{ secrets.PASSWORD }}
     insecure: false
     file: path/to/file.txt
     name: file
+    filename: custom-name.txt
 ```
 
 > [!NOTE]  
@@ -58,18 +61,20 @@ Pass data/headers/params as JSON or YAML formatted strings.
 
 ## Inputs
 
-| Input    | Default    | Description&nbsp;of&nbsp;the&nbsp;Input&nbsp;Value |
-| :------- | :--------- | :------------------------------------------------- |
-| url      | _Required_ | URL for Request [⤵️](#url)                         |
-| method   | `POST`     | Request Method [⤵️](#method)                       |
-| data     | -          | Request Data JSON/YAML [⤵️](#data)                 |
-| headers  | -          | Request Headers JSON/YAML [⤵️](#headers)           |
-| params   | -          | Request Parameters JSON/YAML [⤵️](#params)         |
-| username | -          | Basic Auth Username                                |
-| password | -          | Basic Auth Password                                |
-| insecure | `false`    | Ignore SSL Errors                                  |
-| file     | -          | File Path to Send [⤵️](#file)                      |
-| name     | `file`     | File Form Key Name                                 |
+| Input    | Default&nbsp;Value | Description&nbsp;of&nbsp;the&nbsp;Input&nbsp;Value |
+| :------- | :----------------- | :------------------------------------------------- |
+| url      | _Required_         | URL for Request [⤵️](#url)                         |
+| method   | `POST`             | Request Method [⤵️](#method)                       |
+| data     | -                  | Request Data JSON/YAML [⤵️](#data)                 |
+| headers  | -                  | Request Headers JSON/YAML [⤵️](#headers)           |
+| params   | -                  | Request Parameters JSON/YAML [⤵️](#params)         |
+| config   | -                  | Axios Config JSON/YAML [⤵️](#config)               |
+| username | -                  | Basic Auth Username                                |
+| password | -                  | Basic Auth Password                                |
+| insecure | `false`            | Ignore SSL Errors                                  |
+| file     | -                  | File Path to Send [⤵️](#file)                      |
+| name     | `file`             | File Form Key Name                                 |
+| filename | _Original Name_    | Set a Different File Name                          |
 
 ### url
 
@@ -77,17 +82,19 @@ The URL to send the request too. You may include params here or in the [params](
 
 ### method
 
-The request method, including custom methods.
+The request method, including custom methods. Case-insensitive.
 
 Default: `POST`
 
 ### data
 
-Body JSON or YAML data. Only used for `PUT`, `POST`, `DELETE`, and `PATCH`.
+Body JSON/YAML data. Only used for `PUT`, `POST`, `DELETE`, and `PATCH`.
 
 Data is parsed with `JSON.parse` or `yaml.load`, [js-yaml](https://github.com/nodeca/js-yaml).
 
 <details><summary>View JSON/YAML Example</summary>
+
+This format works for `data`, `headers`, `params`, and `config`.
 
 ```yaml
 data: |
@@ -103,15 +110,35 @@ data: |
   }
 ```
 
+```yaml
+data: '{"key1": "value1", "key2": "value2"}'
+```
+
+Note: All these examples are identical.
+
 </details>
 
 ### headers
 
-Headers JSON or YAML data.
+Headers JSON/YAML data.
 
 ### params
 
-Parameters, Query String, JSON or YAML data. These may also be provided in the [url](#url).
+Parameters (Query String) JSON/YAML data. These may also be provided in the [url](#url).
+
+### config
+
+Additional Axios Config JSON/YAML data. For example, set a 3-second timeout: `timeout: 3000`
+
+Reference: https://axios-http.com/docs/req_config
+
+<details><summary>Note: The config is spread last and overrides other keys.</summary>
+
+```javascript
+config = { url, method, headers, params, data, auth, httpsAgent, ...config }
+```
+
+</details>
 
 ### file
 
@@ -120,12 +147,7 @@ key `name`. The file path is relative to the workspace/working directory.
 
 For more information on inputs, see: https://axios-http.com/docs/req_config
 
-```yaml
-- name: 'Web Request'
-  uses: cssnr/web-request-action@v1
-  with:
-    url: https://httpbin.org/post
-```
+See the [Examples](#examples) for more usage options...
 
 ## Outputs
 
@@ -134,6 +156,8 @@ For more information on inputs, see: https://axios-http.com/docs/req_config
 | status  | Response Status  |
 | headers | Response Headers |
 | data    | Response Data    |
+
+Note: All outputs are run through `JSON.stringify` by default.
 
 ```yaml
 - name: 'Web Request'
@@ -153,10 +177,20 @@ For more information on inputs, see: https://axios-http.com/docs/req_config
 
 💡 _Click on an example heading to expand or collapse the example._
 
-<details open><summary>Algolia Start Crawl</summary>
+<details open><summary>Trigger a Webhook</summary>
 
 ```yaml
-- name: 'Algolia Start Crawl'
+- name: 'Portainer Webhook'
+  uses: cssnr/web-request-action@v1
+  with:
+    url: ${{ secrets.PORTAINER_WEBHOOK }}
+```
+
+</details>
+<details open><summary>Start Algolia Crawl</summary>
+
+```yaml
+- name: 'Start Algolia Crawl'
   uses: cssnr/web-request-action@v1
   with:
     url: https://crawler.algolia.com/api/1/crawlers/${{ secrets.CRAWLER_ID }}/reindex
@@ -168,7 +202,7 @@ For more information on inputs, see: https://axios-http.com/docs/req_config
 <details open><summary>Deploy to Render</summary>
 
 ```yaml
-- name: 'Render Deploy'
+- name: 'Render Deploy Image'
   uses: cssnr/web-request-action@v1
   with:
     url: ${{ secrets.RENDER_HOOK }}
@@ -196,7 +230,13 @@ For more information on inputs, see: https://axios-http.com/docs/req_config
   with:
     url: https://httpbin.org/post
     data: '{"key": "value"}'
+    data: |
+      '{"key": "value"}'
+    data: |
+      key: value
 ```
+
+Note: All data keys are identical as exemplar formats.
 
 </details>
 <details><summary>Send File</summary>
@@ -208,7 +248,23 @@ For more information on inputs, see: https://axios-http.com/docs/req_config
     url: https://httpbin.org/post
     file: path/to/file.txt
     name: file # Default - name of file key
+    filename: name.txt # Optional - file name
 ```
+
+</details>
+<details><summary>Set Axios Config</summary>
+
+```yaml
+- name: 'Web Request'
+  uses: cssnr/web-request-action@v1
+  with:
+    url: https://httpbin.org/post
+    config: |
+      timeout: 1000
+      maxContentLength: 2000
+```
+
+Reference: https://axios-http.com/docs/req_config
 
 </details>
 <details><summary>All Inputs</summary>
@@ -226,11 +282,14 @@ For more information on inputs, see: https://axios-http.com/docs/req_config
       {
         "key": "value"
       }
+    config: |
+      timeout: 5000
     username: ${{ secrets.USERNAME }}
     password: ${{ secrets.PASSWORD }}
     insecure: false
     file: path/to/file.txt
     name: file
+    filename: name.txt
 ```
 
 </details>

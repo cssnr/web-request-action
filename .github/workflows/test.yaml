@@ -15,6 +15,9 @@ on:
       - "action.yml"
   pull_request:
 
+env:
+  httpbin: ${{ !github.event.act && 'https://httpbin.org' || 'http://192.168.1.25:8080' }}
+
 jobs:
   test:
     name: "Test"
@@ -32,23 +35,54 @@ jobs:
           GITHUB_CTX: ${{ toJSON(github) }}
         run: echo "$GITHUB_CTX"
 
-      - name: "Test Local Action"
-        id: test
+      - name: "1: Test Data"
+        id: test1
         uses: ./
         with:
-          url: https://httpbin.org/post
+          url: "${{ env.httpbin }}/post"
+          #insecure: true
           #data: '{"key": "value"}'
           data: |
             key: value
           params: |
             param1: value1
+          config: |
+            timeout: 30000
 
-      - name: "Verify Outputs"
+      - name: "1: Verify Data"
+        if: ${{ !github.event.act }}
         run: |
-          echo 'status: ${{ steps.test.outputs.status }}'
-          echo 'headers: ${{ steps.test.outputs.headers }}'
-          echo 'data: ${{ steps.test.outputs.data }}'
-          if [ '${{ fromJson(steps.test.outputs.data).data }}' != '{"key":"value"}' ];then
+          echo 'status: ${{ steps.test1.outputs.status }}'
+          echo 'headers: ${{ steps.test1.outputs.headers }}'
+          echo 'data: ${{ steps.test1.outputs.data }}'
+          if [ '${{ fromJson(steps.test1.outputs.data).data }}' != '{"key":"value"}' ];then
+            echo "Output Invalid"
+            exit 1
+          fi
+
+      - name: "2: Test File"
+        if: ${{ !github.event.act }}
+        id: test2
+        uses: ./
+        with:
+          url: "${{ env.httpbin }}/post"
+          #insecure: true
+          #data: '{"key": "value"}'
+          data: |
+            key: value
+          params: |
+            param1: value1
+          file: event.json
+          filename: not-event.json
+
+      - name: "2: Verify File"
+        if: ${{ !github.event.act }}
+        run: |
+          echo 'status: ${{ steps.test2.outputs.status }}'
+          echo 'headers: ${{ steps.test2.outputs.headers }}'
+          echo 'data: ${{ steps.test2.outputs.data }}'
+          echo 'data.form: ${{ fromJson(steps.test2.outputs.data).form.key }}'
+          if [ '${{ fromJson(steps.test2.outputs.data).form.key }}' != 'value' ];then
             echo "Output Invalid"
             exit 1
           fi

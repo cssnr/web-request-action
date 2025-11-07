@@ -1,5 +1,5 @@
 name: "Web Request"
-description: "Send Web Requests like POST and GET with Axios using GitHub Actions."
+description: "Easily Make Web Requests like GET/POST, Trigger Webhooks, and Send Files using Axios. Data inputs supports YAML/JSON format."
 author: "Shane"
 branding:
   icon: "globe"
@@ -13,11 +13,13 @@ inputs:
     description: "Request Method"
     default: "POST"
   data:
-    description: "Request Data JSON"
+    description: "Request Data JSON/YAML"
   headers:
-    description: "Request Headers JSON"
+    description: "Request Headers JSON/YAML"
   params:
-    description: "Request Parameters JSON"
+    description: "Request Parameters JSON/YAML"
+  config:
+    description: "Axios Config JSON/YAML"
   username:
     description: "Basic Auth Username"
   password:
@@ -30,6 +32,8 @@ inputs:
   name:
     description: "File Key Name"
     default: "file"
+  filename:
+    description: "Custom File Name"
 
 outputs:
   status:
@@ -38,6 +42,8 @@ outputs:
     description: "Response Headers"
   data:
     description: "Response Data"
+  #url:
+  #  description: "Response URL"
 
 runs:
   using: "node24"
