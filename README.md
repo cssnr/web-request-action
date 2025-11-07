@@ -45,6 +45,8 @@ Pass data/headers/params as JSON or YAML formatted strings.
       {
         "key": "value"
       }
+    config: |
+      timeout: 1000
     username: ${{ secrets.USERNAME }}
     password: ${{ secrets.PASSWORD }}
     insecure: false
@@ -86,11 +88,13 @@ Default: `POST`
 
 ### data
 
-Body JSON or YAML data. Only used for `PUT`, `POST`, `DELETE`, and `PATCH`.
+Body JSON/YAML data. Only used for `PUT`, `POST`, `DELETE`, and `PATCH`.
 
 Data is parsed with `JSON.parse` or `yaml.load`, [js-yaml](https://github.com/nodeca/js-yaml).
 
 <details><summary>View JSON/YAML Example</summary>
+
+This format works for `data`, `headers`, `params`, and `config`.
 
 ```yaml
 data: |
@@ -106,21 +110,35 @@ data: |
   }
 ```
 
+```yaml
+data: '{"key1": "value1", "key2": "value2"}'
+```
+
+Note: All these examples are identical.
+
 </details>
 
 ### headers
 
-Headers JSON or YAML data.
+Headers JSON/YAML data.
 
 ### params
 
-Parameters, Query String, JSON or YAML data. These may also be provided in the [url](#url).
+Parameters (Query String) JSON/YAML data. These may also be provided in the [url](#url).
 
 ### config
 
-Additional Axios Config JSON or YAML data. For example, set a 3-second timeout: `timeout: 3000`
+Additional Axios Config JSON/YAML data. For example, set a 3-second timeout: `timeout: 3000`
 
 Reference: https://axios-http.com/docs/req_config
+
+<details><summary>Note: The config is spread last and overrides other keys.</summary>
+
+```javascript
+config = { url, method, headers, params, data, auth, httpsAgent, ...config }
+```
+
+</details>
 
 ### file
 
@@ -138,6 +156,8 @@ See the [Examples](#examples) for more usage options...
 | status  | Response Status  |
 | headers | Response Headers |
 | data    | Response Data    |
+
+Note: All outputs are run through `JSON.stringify` by default.
 
 ```yaml
 - name: 'Web Request'
@@ -157,10 +177,20 @@ See the [Examples](#examples) for more usage options...
 
 💡 _Click on an example heading to expand or collapse the example._
 
-<details open><summary>Algolia Start Crawl</summary>
+<details open><summary>Trigger a Webhook</summary>
 
 ```yaml
-- name: 'Algolia Start Crawl'
+- name: 'Portainer Webhook'
+  uses: cssnr/web-request-action@v1
+  with:
+    url: ${{ secrets.PORTAINER_WEBHOOK }}
+```
+
+</details>
+<details open><summary>Start Algolia Crawl</summary>
+
+```yaml
+- name: 'Start Algolia Crawl'
   uses: cssnr/web-request-action@v1
   with:
     url: https://crawler.algolia.com/api/1/crawlers/${{ secrets.CRAWLER_ID }}/reindex
@@ -172,7 +202,7 @@ See the [Examples](#examples) for more usage options...
 <details open><summary>Deploy to Render</summary>
 
 ```yaml
-- name: 'Render Deploy'
+- name: 'Render Deploy Image'
   uses: cssnr/web-request-action@v1
   with:
     url: ${{ secrets.RENDER_HOOK }}
@@ -200,7 +230,13 @@ See the [Examples](#examples) for more usage options...
   with:
     url: https://httpbin.org/post
     data: '{"key": "value"}'
+    data: |
+      '{"key": "value"}'
+    data: |
+      key: value
 ```
+
+Note: All data keys are identical as exemplar formats.
 
 </details>
 <details><summary>Send File</summary>
@@ -246,11 +282,14 @@ Reference: https://axios-http.com/docs/req_config
       {
         "key": "value"
       }
+    config: |
+      timeout: 5000
     username: ${{ secrets.USERNAME }}
     password: ${{ secrets.PASSWORD }}
     insecure: false
     file: path/to/file.txt
     name: file
+    filename: name.txt
 ```
 
 </details>
