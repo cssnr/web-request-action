@@ -43970,19 +43970,24 @@ async function main() {
     // console.log('response.request._headers:', response.request._headers)
 
     core.startGroup('Headers')
-    console.log('response.headers:', response.headers)
+    console.log(response.headers)
     core.endGroup() // Headers
 
     core.startGroup('Data')
-    console.log('response.data:', response.data)
+    console.log(response.data)
     core.endGroup() // Data
+
+    const result = parseJSONPath(path, response.data)
+    core.startGroup('Result')
+    console.log(result)
+    core.endGroup() // Result
 
     // Outputs
     core.info('📩 Setting Outputs')
     core.setOutput('status', response.status)
     core.setOutput('headers', response.headers)
     core.setOutput('data', response.data)
-    core.setOutput('result', parseJSONPath(path, response.data))
+    core.setOutput('result', result)
     // core.setOutput('url', response.request?.res?.responseUrl || '')
 
     core.info(`✅ \u001b[32;1mFinished Success`)
@@ -43991,10 +43996,8 @@ async function main() {
 function parseJSONPath(value, data) {
     if (!value) return null
     const values = JSONPath({ path: value, json: data })
-    console.log('JSONPath values:', values)
-    // if (!values.length) {
-    //     throw new Error(`No Values for Path: ${value}`)
-    // }
+    core.debug(`JSONPath values: ${values}`)
+    // if (!values.length) throw new Error(`No Values for Path: ${value}`)
     return values[0]
 }
 
@@ -44007,18 +44010,15 @@ function parseData(input) {
     const data = core.getInput(input)
     if (!data) return {}
     core.debug(`Parsing input "${input}" with value:\n${data}`)
-    // console.log(`Parsing input "${input}" with value:\n${data}`)
     try {
         return JSON.parse(data)
     } catch (e) {
         core.debug(`${input} - JSON.parse failed: ${e.message}`)
-        // console.log(`${input} - JSON.parse failed:`, e.message)
     }
     try {
         return yaml.load(data)
     } catch (e) {
         core.debug(`${input} - yaml.load failed: ${e.message}`)
-        // console.log(`${input} - yaml.load failed:`, e.message)
     }
     throw new Error(`Unable to parse "${input}" with value: ${data}`)
 }
