@@ -5,6 +5,7 @@ const core = require('@actions/core')
 
 const axios = require('axios')
 const FormData = require('form-data')
+const { JSONPath } = require('jsonpath-plus')
 const yaml = require('js-yaml')
 
 async function main() {
@@ -39,6 +40,8 @@ async function main() {
     console.log('name:', name)
     const filename = core.getInput('filename')
     console.log('filename:', filename)
+    const path = core.getInput('path')
+    console.log('path:', path)
     core.endGroup() // Inputs
 
     // Options
@@ -95,9 +98,20 @@ async function main() {
     core.setOutput('status', response.status)
     core.setOutput('headers', response.headers)
     core.setOutput('data', response.data)
+    core.setOutput('result', parseJSONPath(path, response.data))
     // core.setOutput('url', response.request?.res?.responseUrl || '')
 
     core.info(`✅ \u001b[32;1mFinished Success`)
+}
+
+function parseJSONPath(value, data) {
+    if (!value) return null
+    const values = JSONPath({ path: value, json: data })
+    console.log('JSONPath values:', values)
+    // if (!values.length) {
+    //     throw new Error(`No Values for Path: ${value}`)
+    // }
+    return values[0]
 }
 
 /**

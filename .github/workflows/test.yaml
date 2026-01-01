@@ -28,7 +28,7 @@ jobs:
 
     steps:
       - name: "Checkout"
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: "Debug CTX github"
         if: ${{ !github.event.act }}
@@ -86,6 +86,27 @@ jobs:
           echo 'data.form: ${{ fromJson(steps.test2.outputs.data).form.key }}'
           if [ '${{ fromJson(steps.test2.outputs.data).form.key }}' != 'value' ];then
             echo "Output Invalid"
+            exit 1
+          fi
+
+      - name: "3: Test Path"
+        if: ${{ !github.event.act }}
+        id: test3
+        uses: ./
+        with:
+          url: "https://pypi.org/pypi/toml_run/json"
+          method: "GET"
+          path: '$.urls[?(@.packagetype=="sdist")].url'
+
+      - name: "3: Verify Path"
+        if: ${{ !github.event.act }}
+        run: |
+          echo 'status: ${{ steps.test3.outputs.status }}'
+          echo 'headers: ${{ steps.test3.outputs.headers }}'
+          echo 'data: ${{ steps.test3.outputs.data }}'
+          echo 'result: ${{ steps.test3.outputs.result }}'
+          if [ -z '${{ steps.test3.outputs.result }}' ];then
+            echo "Output Invalid: result"
             exit 1
           fi
 
