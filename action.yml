@@ -34,6 +34,8 @@ inputs:
     default: "file"
   filename:
     description: "Custom File Name"
+  path:
+    description: "Parse a JSON Path"
 
 outputs:
   status:
@@ -42,6 +44,8 @@ outputs:
     description: "Response Headers"
   data:
     description: "Response Data"
+  result:
+    description: "JSON Path Results"
   #url:
   #  description: "Response URL"
 
