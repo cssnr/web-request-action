@@ -96,7 +96,7 @@ jobs:
         with:
           url: "https://pypi.org/pypi/toml_run/json"
           method: "GET"
-          path: '$.urls[?(@.packagetype=="sdist")].url'
+          path: '$.urls[?(@.packagetype=="sdist")]'
 
       - name: "3: Verify Path"
         if: ${{ !github.event.act }}
@@ -109,6 +109,8 @@ jobs:
             echo "Output Invalid: result"
             exit 1
           fi
+          echo 'url: ${{ fromJSON(steps.test3.outputs.result).url }}'
+          echo 'sha256: ${{ fromJSON(steps.test3.outputs.result).digests.sha256 }}'
 
       - name: "Schedule Failure Notification"
         if: ${{ failure() && github.event_name == 'schedule' }}
