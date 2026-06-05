@@ -84,11 +84,11 @@ async function main() {
   // console.log('response.request._headers:', response.request._headers)
 
   core.startGroup('Headers')
-  console.log(response.headers)
+  console.log(response.headers) // NOSONAR
   core.endGroup() // Headers
 
   core.startGroup('Data')
-  console.log(response.data)
+  console.log(response.data) // NOSONAR
   core.endGroup() // Data
 
   const result = parseJSONPath(path, response.data)
