@@ -1,6 +1,7 @@
 name: "Web Request"
 description: "Easily Make Web Requests like GET/POST, Trigger Webhooks, and Send Files using Axios. Data inputs supports YAML/JSON format."
 author: "Shane"
+
 branding:
   icon: "globe"
   color: "green"
