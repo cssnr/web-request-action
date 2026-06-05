@@ -1,6 +1,6 @@
 name: "Test"
 
-# actions-up-ignore-file
+# actions-up-ignore-file - github disabling workflows is retarded
 
 on:
   workflow_dispatch:
