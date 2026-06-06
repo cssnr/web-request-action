@@ -96,6 +96,7 @@ jobs:
           location: "tail"
           actions: |
             tags: ${{ steps.tags.outputs.tags }}
+            sha: ${{ steps.tags.outputs.sha }}
 
       - name: "Package Changelog"
         continue-on-error: true
