@@ -1,0 +1,55 @@
+name: "Web Request"
+description: "Easily Make Web Requests like GET/POST, Trigger Webhooks, and Send Files using Axios. Data inputs supports YAML/JSON format."
+author: "Shane"
+
+branding:
+  icon: "globe"
+  color: "green"
+
+inputs:
+  url:
+    description: "URL for Request"
+    required: true
+  method:
+    description: "Request Method"
+    default: "POST"
+  data:
+    description: "Request Data JSON/YAML"
+  headers:
+    description: "Request Headers JSON/YAML"
+  params:
+    description: "Request Parameters JSON/YAML"
+  config:
+    description: "Axios Config JSON/YAML"
+  username:
+    description: "Basic Auth Username"
+  password:
+    description: "Basic Auth Password"
+  insecure:
+    description: "Ignore SSL Errors"
+    default: "false"
+  file:
+    description: "File Path"
+  name:
+    description: "File Key Name"
+    default: "file"
+  filename:
+    description: "Custom File Name"
+  path:
+    description: "Parse a JSON Path"
+
+outputs:
+  status:
+    description: "Response Status"
+  headers:
+    description: "Response Headers"
+  data:
+    description: "Response Data"
+  result:
+    description: "JSON Path Results"
+  #url:
+  #  description: "Response URL"
+
+runs:
+  using: "node24"
+  main: "dist/index.js"
