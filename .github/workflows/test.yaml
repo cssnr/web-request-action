@@ -1,7 +1,5 @@
 name: "Test"
 
-# actions-up-ignore-file
-
 on:
   workflow_dispatch:
   #schedule:
@@ -55,7 +53,7 @@ jobs:
         with:
           node-version: 24
 
-      - name: "Install & Build"
+      - name: "Install"
         if: ${{ !github.event.act }}
         run: |
           npm ci
