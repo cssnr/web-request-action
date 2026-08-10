@@ -1,5 +1,5 @@
-[![GitHub Tag Major](https://img.shields.io/github/v/tag/cssnr/web-request-action?sort=semver&filter=!v*.*&logo=git&logoColor=white&labelColor=585858&label=%20)](https://github.com/cssnr/web-request-action/tags)
-[![GitHub Tag Minor](https://img.shields.io/github/v/tag/cssnr/web-request-action?sort=semver&filter=!v*.*.*&logo=git&logoColor=white&labelColor=585858&label=%20)](https://github.com/cssnr/web-request-action/releases)
+[![GitHub Tag Major](https://img.shields.io/github/v/tag/cssnr/web-request-action?sort=semver&filter=!*.*&logo=git&logoColor=white&labelColor=585858&label=%20)](https://github.com/cssnr/web-request-action/tags)
+[![GitHub Tag Minor](https://img.shields.io/github/v/tag/cssnr/web-request-action?sort=semver&filter=!*.*.*&logo=git&logoColor=white&labelColor=585858&label=%20)](https://github.com/cssnr/web-request-action/releases)
 [![GitHub Release Version](https://img.shields.io/github/v/release/cssnr/web-request-action?logo=git&logoColor=white&labelColor=585858&label=%20)](https://github.com/cssnr/web-request-action/releases/latest)
 [![GitHub Dist Size](https://img.shields.io/github/size/cssnr/web-request-action/dist%2Findex.js?branch=release&logo=bookstack&logoColor=white&label=dist)](https://github.com/cssnr/web-request-action/tree/release)
 [![Action Run Using](https://img.shields.io/badge/dynamic/yaml?url=https%3A%2F%2Fraw.githubusercontent.com%2Fcssnr%2Fweb-request-action%2Frefs%2Fheads%2Fmaster%2Faction.yml&query=%24.runs.using&logo=githubactions&logoColor=white&label=runs)](https://github.com/cssnr/actionlint-action/blob/master/action.yml)
@@ -309,11 +309,11 @@ https://github.com/cssnr/web-request-action/network/dependents
 
 The following rolling [tags](https://github.com/cssnr/web-request-action/tags) are maintained.
 
-| Version&nbsp;Tag                                                                                                                                                                                                     | Rolling | Bugs | Feat. |   Name    |  Target  | Example  |
-| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-----: | :--: | :---: | :-------: | :------: | :------- |
-| [![GitHub Tag Major](https://img.shields.io/github/v/tag/cssnr/web-request-action?sort=semver&filter=!v*.*&style=for-the-badge&label=%20&color=44cc10)](https://github.com/cssnr/web-request-action/releases/latest) |   ✅    |  ✅  |  ✅   | **Major** | `vN.x.x` | `vN`     |
-| [![GitHub Tag Minor](https://img.shields.io/github/v/tag/cssnr/web-request-action?sort=semver&filter=!v*.*.*&style=for-the-badge&label=%20&color=blue)](https://github.com/cssnr/web-request-action/releases/latest) |   ✅    |  ✅  |  ❌   | **Minor** | `vN.N.x` | `vN.N`   |
-| [![GitHub Release](https://img.shields.io/github/v/release/cssnr/web-request-action?style=for-the-badge&label=%20&color=red)](https://github.com/cssnr/web-request-action/releases/latest)                           |   ❌    |  ❌  |  ❌   | **Micro** | `vN.N.N` | `vN.N.N` |
+| Version&nbsp;Tag                                                                                                                                                                                                    | Rolling | Bugs | Feat. |   Name    |  Target  | Example  |
+| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :-----: | :--: | :---: | :-------: | :------: | :------- |
+| [![GitHub Tag Major](https://img.shields.io/github/v/tag/cssnr/web-request-action?sort=semver&filter=!*.*&style=for-the-badge&label=%20&color=44cc10)](https://github.com/cssnr/web-request-action/releases/latest) |   ✅    |  ✅  |  ✅   | **Major** | `vN.x.x` | `vN`     |
+| [![GitHub Tag Minor](https://img.shields.io/github/v/tag/cssnr/web-request-action?sort=semver&filter=!*.*.*&style=for-the-badge&label=%20&color=blue)](https://github.com/cssnr/web-request-action/releases/latest) |   ✅    |  ✅  |  ❌   | **Minor** | `vN.N.x` | `vN.N`   |
+| [![GitHub Release](https://img.shields.io/github/v/release/cssnr/web-request-action?style=for-the-badge&label=%20&color=red)](https://github.com/cssnr/web-request-action/releases/latest)                          |   ❌    |  ❌  |  ❌   | **Micro** | `vN.N.N` | `vN.N.N` |
 
 You can view the release notes for each version on the [releases](https://github.com/cssnr/web-request-action/releases) page.
 
